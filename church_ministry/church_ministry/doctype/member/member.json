@@ -674,6 +674,7 @@
   }, 
   {
    "allow_on_submit": 0, 
+   "depends_on": "eval:doc.baptisum_status== 'Yes'", 
    "fieldname": "when", 
    "fieldtype": "Date", 
    "hidden": 0, 
@@ -693,6 +694,7 @@
   }, 
   {
    "allow_on_submit": 0, 
+   "depends_on": "eval:doc.baptisum_status== 'Yes'", 
    "fieldname": "where", 
    "fieldtype": "Data", 
    "hidden": 0, 
@@ -771,7 +773,7 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "depends_on": "eval:doc.employment_status", 
+   "depends_on": "eval:doc.employment_status== 'Business Man' || doc.employment_status== 'Trader' || doc.employment_status== 'Government Worker' || doc.employment_status== 'Professional' || doc.employment_status== 'Petty Trade' || doc.employment_status== 'Others'", 
    "fieldname": "yearly_income", 
    "fieldtype": "Data", 
    "hidden": 0, 
@@ -828,6 +830,7 @@
   }, 
   {
    "allow_on_submit": 0, 
+   "depends_on": "eval:doc.employment_status== 'Business Man' || doc.employment_status== 'Trader' || doc.employment_status== 'Government Worker' || doc.employment_status== 'Professional' || doc.employment_status== 'Petty Trade' || doc.employment_status== 'Others'", 
    "fieldname": "industry_segment", 
    "fieldtype": "Select", 
    "hidden": 0, 
@@ -848,6 +851,7 @@
   }, 
   {
    "allow_on_submit": 0, 
+   "depends_on": "eval:doc.employment_status== 'Business Man' || doc.employment_status== 'Trader' || doc.employment_status== 'Government Worker' || doc.employment_status== 'Professional' || doc.employment_status== 'Petty Trade' || doc.employment_status== 'Others'", 
    "fieldname": "experience_years", 
    "fieldtype": "Select", 
    "hidden": 0, 
@@ -894,7 +898,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-04 15:30:03.875490", 
+ "modified": "2015-02-07 12:39:55.464249", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Member", 

@@ -10,7 +10,7 @@ $.extend(cur_frm.cscript, {
     }
     else{
     cur_frm.cscript.create_pin_on_map(doc,doc.lat,doc.lon);
-    }    
+    }   
   }
 });
 

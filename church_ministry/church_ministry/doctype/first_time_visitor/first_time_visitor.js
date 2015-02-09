@@ -2,27 +2,14 @@
 // License: GNU General Public License v3. See license.txt
 
 $.extend(cur_frm.cscript, {
-  onload:function (doc,dt,dn){  
+  onload:function (doc,dt,dn){ 
     $('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('div[title~="lon"]'));
-    /*console.log("callig gmap");
-         var mapOptions = {
-        zoom: 6,
-        center: new google.maps.LatLng(9.072264, 7.491302)
-      };
-      console.log(mapOptions);
-      map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-      console.log(map);*/
-    //var o = new gmap(doc);
-    //console.log(['o loload ',o]); 
     if(doc.__islocal || (!doc.lat || ! doc.lon)){
-      //console.log("new form or not have lat lon ");
       cur_frm.cscript.create_pin_on_map(doc,'9.072264','7.491302');
     }
     else{
     cur_frm.cscript.create_pin_on_map(doc,doc.lat,doc.lon);
-
-    }
-    
+    }    
   },
 
 	refresh: function (doc, dt, dn) {

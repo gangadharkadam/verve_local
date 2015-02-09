@@ -97,6 +97,10 @@ doc_events = {
 	},
 	"First Time Visitor": {
 		"validate": "church_ministry.church_ministry.doctype.first_time_visitor.first_time_visitor.validate_birth"		
+	},
+	"Foundation School Exam": {
+		"validate": "church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.validate_duplicate",
+		"on_submit": "church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.update_attendance",		
 	}
 }
 

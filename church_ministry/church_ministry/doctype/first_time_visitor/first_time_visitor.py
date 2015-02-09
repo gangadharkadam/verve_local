@@ -34,4 +34,7 @@ def _make_member(source_name, target_doc=None, ignore_permissions=False):
 def validate_birth(doc,method):
 		if doc.date_of_birth and doc.date_of_visit and getdate(doc.date_of_birth) >= getdate(doc.date_of_visit):		
 			frappe.throw(_("Date of Visit '{0}' must be greater than Date of Birth '{1}'").format(doc.date_of_visit, doc.date_of_birth))
+		if doc.baptisum_status=='Yes':
+			if not doc.when or doc.where :
+				frappe.throw(_("When and Where is Mandatory if 'Baptisum Status' is 'Yes'..!"))
 
