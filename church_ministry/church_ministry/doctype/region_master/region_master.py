@@ -10,7 +10,7 @@ class RegionMaster(Document):
 	pass
 
 
-def validate_duplicate(doc,method):
+def validate_duplicate(doc):
 	if doc.get("__islocal"):
 		res=frappe.db.sql("select name from `tabRegion Master` where region_name='%s' and region_code='%s'"%(doc.region_name,doc.region_code))
 		if res:

@@ -3,7 +3,8 @@
 
 $.extend(cur_frm.cscript, {
   onload:function (doc,dt,dn){ 
-    $('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('div[title~="lon"]'));
+    //$('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('div[title~="lon"]'));
+    $('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('.layout-main-section'));
     if(doc.__islocal || (!doc.lat || ! doc.lon)){
       cur_frm.cscript.create_pin_on_map(doc,'9.072264','7.491302');
     }
@@ -231,11 +232,8 @@ var s=1;
 
 function updateMarkerPosition(latLng) {
   doc=cur_frm.doc
-  //console.log(['latlon',latLng])
-  //console.log(["update mrkr psn",latLng,doc.lat,doc.lon,latLng.lat(),latLng.lng()])
   doc.lat=latLng.lat()
   doc.lon=latLng.lng()
-  //console.log([doc.lat,doc.lon,doc.name])
   refresh_field('lat')
   refresh_field('lon')
 }
@@ -284,11 +282,3 @@ cur_frm.cscript.address = function(doc, dt, dn){
         o.codeAddress(doc.address)
 }
 
-
-/*cur_frm.get_field("address").$input.on("keypress", function() {
-        console.log("hi on key up");
-        console.log(['in address trigger ',doc.address]);
-        var o = new gmap(this.frm.doc);
-        console.log(['o gmap after address trigger ',o]);
-        o.codeAddress(doc.address)
-});*/
