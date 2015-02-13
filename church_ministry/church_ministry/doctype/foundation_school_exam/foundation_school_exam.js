@@ -22,7 +22,7 @@ cur_frm.cscript.cell = function(doc, cdt, cdn) {
 	        	"visitor_type":doc.visitor_type
 	        	},
 				callback: function(r) {
-					if (r.message.ftv[0].length>1){
+					if (r.message.ftv[0].length>0){
 						frappe.model.clear_table(doc, "attendance");
 			           for (i=0;i<r.message.ftv[0].length;i++){
 			           	    var child = frappe.model.add_child(doc,"Foundation School Exam Details","attendance");
