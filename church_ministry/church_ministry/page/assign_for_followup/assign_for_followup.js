@@ -44,6 +44,11 @@ frappe.assign = Class.extend({
 		"only_input":true,
 		parent:$(me.wrapper).find("#ftvi"),
 		});
+		this.ftv.get_query = function() { 
+			return{
+					query: "church_ministry.church_ministry.page.assign_for_followup.assign_for_followup.loadftv"
+				}
+		}
 		this.ftv.make_input();
 		this.ftv.$input.on("change", function() {
 			var ftv=me.ftv.$input.val();
@@ -127,6 +132,7 @@ var assign = function(memberid,ftv){
 	        callback: function(r) {
 	            if (r.message=='Done'){
 	                alert("The Member '"+memberid+"' is successfully assigned to First Time Vistor '"+ftv+"'");
+	                location.reload();
 	            }
 	            else{
 	                alert("Invalid Assignment ");

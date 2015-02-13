@@ -72,7 +72,7 @@ def update_attendance(doc,method):
 				exm='Completed Class 1, 2 , 3 & 4'
 			elif doc.foundation__exam=='Class 5':
 				exm='Completed Class 1, 2 , 3 , 4 & 5'
-			else:
+			elif doc.foundation__exam=='Class 6':
 				exm='Completed All Classes and Passed Exam'
 			if doc.visitor_type=='FTV':
 				frappe.db.sql("""update `tabFirst Time Visitor` set school_status='%s' where name='%s' """ % (exm,d.ftv_id))
