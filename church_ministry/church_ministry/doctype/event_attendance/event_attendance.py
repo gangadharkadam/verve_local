@@ -7,3 +7,11 @@ from frappe.model.document import Document
 
 class EventAttendance(Document):
 	pass
+
+
+
+@frappe.whitelist()
+def loadtable(cell):
+	return {
+		"ftv": [frappe.db.sql("select name,ftv_name from `tabFirst Time Visitor` where cell='%s' union select name,member_name from `tabMember` where cell='%s'"%(cell,cell))]
+		}

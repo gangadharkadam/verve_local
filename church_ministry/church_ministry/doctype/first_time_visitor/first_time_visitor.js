@@ -1,36 +1,6 @@
 // Copyright (c) 2013, Web Notes Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-/*$.extend(cur_frm.cscript, {
-  onload:function (doc,dt,dn){ 
-    //$('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('div[title~="lon"]'));
-    //$('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div> ').appendTo($('.layout-main-section'));
-    $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div>');
-    if(doc.__islocal || (!doc.lat || ! doc.lon)){
-      cur_frm.cscript.create_pin_on_map(doc,'9.072264','7.491302');
-    }
-    else{
-    cur_frm.cscript.create_pin_on_map(doc,doc.lat,doc.lon);
-    }    
-  },
-
-	refresh: function (doc, dt, dn) {
-		if(!this.frm.doc.__islocal ) {;
-			this.frm.add_custom_button(__("Create Member"), this.create_member,
-				frappe.boot.doctype_icons["Customer"], "btn-default");
-		}
-	},	
-
-	create_member: function() {
-		frappe.model.open_mapped_doc({
-			method: "church_ministry.church_ministry.doctype.first_time_visitor.first_time_visitor.make_member",
-			frm: cur_frm
-		})
-	}
-});*/
-
-
-
 frappe.ui.form.on("First Time Visitor", "onload", function(frm) {
   $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div>');
     if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
@@ -57,11 +27,6 @@ frappe.ui.form.on("First Time Visitor", "create_member",
                 name: frm.doc.create_member
             },
             callback: function (data) {
-               /* frappe.model.set_value(frm.doctype,
-                    frm.docname, "member_name",
-                    data.message.first_name
-                    + (data.message.last_name ?
-                        (" " + data.message.last_name) : ""))*/
             }
         })
     });
@@ -110,8 +75,6 @@ gmap = Class.extend({
                 };
                 map = new google.maps.Map($('.map-canvas'), myOptions);
                 console.log(['map in gmap ',map]);
-                //console.log($('#map-canvas'));
-                //me.successFunction(doc.address, map)
                 me.successFunction('abuja nigeria', map)
         },
         successFunction: function(position, map) {

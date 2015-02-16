@@ -20,6 +20,11 @@ def get_data():
 					"name": "Foundation School Exam",
 					"description": _("Foundation School Exam Attendance/Results")
 				},
+				{
+					"type":"doctype",
+					"name": "Event Attendance",
+					"description": _("Event Attendance")
+				},
 			]
 		},
 	]
