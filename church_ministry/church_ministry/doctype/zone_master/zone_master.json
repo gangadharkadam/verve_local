@@ -4,7 +4,7 @@
  "allow_rename": 0, 
  "autoname": "ZONE.######", 
  "creation": "2015-01-23 16:25:44.242807", 
- "custom": 1, 
+ "custom": 0, 
  "docstatus": 0, 
  "doctype": "DocType", 
  "document_type": "System", 
@@ -113,7 +113,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-01-31 16:33:00.377028", 
+ "modified": "2015-02-17 15:31:13.527492", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Zone Master", 
@@ -135,6 +135,7 @@
    "report": 0, 
    "role": "Administrator", 
    "set_user_permissions": 0, 
+   "share": 1, 
    "submit": 0, 
    "write": 1
   }, 
@@ -147,6 +148,7 @@
    "read": 1, 
    "report": 1, 
    "role": "System Manager", 
+   "share": 1, 
    "write": 1
   }, 
   {
@@ -167,6 +169,7 @@
    "read": 1, 
    "report": 1, 
    "role": "Regional Pastor", 
+   "share": 1, 
    "user_permission_doctypes": "[\"Region Master\"]", 
    "write": 1
   }

@@ -4,7 +4,7 @@
  "allow_rename": 0, 
  "autoname": "CHG.####", 
  "creation": "2015-01-23 16:30:28.141224", 
- "custom": 1, 
+ "custom": 0, 
  "docstatus": 0, 
  "doctype": "DocType", 
  "document_type": "System", 
@@ -103,7 +103,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-02 11:53:49.274572", 
+ "modified": "2015-02-17 15:26:22.375044", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Church Group Master", 
@@ -125,6 +125,7 @@
    "report": 0, 
    "role": "Administrator", 
    "set_user_permissions": 0, 
+   "share": 1, 
    "submit": 0, 
    "write": 1
   }, 
@@ -137,6 +138,7 @@
    "read": 1, 
    "report": 1, 
    "role": "System Manager", 
+   "share": 1, 
    "write": 1
   }, 
   {
@@ -163,6 +165,7 @@
    "read": 1, 
    "report": 1, 
    "role": "Zonal Pastor", 
+   "share": 1, 
    "write": 1
   }, 
   {
@@ -175,6 +178,7 @@
    "read": 1, 
    "report": 1, 
    "role": "Regional Pastor", 
+   "share": 1, 
    "write": 1
   }
  ], 

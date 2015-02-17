@@ -2,21 +2,15 @@
 // License: GNU General Public License v3. See license.txt
 
 frappe.ui.form.on("First Time Visitor", "onload", function(frm) {
+  $( "#map-canvas" ).remove();
   $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div>');
     if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
       cur_frm.cscript.create_pin_on_map(frm.doc,'9.072264','7.491302');
     }
     else{
-    cur_frm.cscript.create_pin_on_map(frm.doc,doc.lat,frm.doc.lon);
+    cur_frm.cscript.create_pin_on_map(frm.doc,frm.doc.lat,frm.doc.lon);
     }    
 });
-
-/*frappe.ui.form.on("First Time Visitor", "refresh", function(frm) {
-  if(!this.frm.doc.__islocal ) {;
-      this.frm.add_custom_button(__("Create Member"), this.create_member,
-        frappe.boot.doctype_icons["Customer"], "btn-default");
-    }    
-});*/
 
 frappe.ui.form.on("First Time Visitor", "create_member",
     function(frm) {

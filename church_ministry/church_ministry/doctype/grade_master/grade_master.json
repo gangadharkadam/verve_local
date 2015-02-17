@@ -4,7 +4,7 @@
  "allow_rename": 0, 
  "autoname": "field:grade", 
  "creation": "2015-01-29 13:19:35.198306", 
- "custom": 1, 
+ "custom": 0, 
  "docstatus": 0, 
  "doctype": "DocType", 
  "document_type": "System", 
@@ -74,7 +74,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-01-29 13:21:37.662013", 
+ "modified": "2015-02-17 16:03:45.198005", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Grade Master", 
@@ -96,6 +96,7 @@
    "report": 1, 
    "role": "System Manager", 
    "set_user_permissions": 0, 
+   "share": 1, 
    "submit": 0, 
    "write": 1
   }

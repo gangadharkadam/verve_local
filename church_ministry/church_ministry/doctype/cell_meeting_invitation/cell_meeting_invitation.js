@@ -1,22 +1,20 @@
-cur_frm.cscript.validate = function(doc,cdt,cdn) {
-	console.log(doc.meeting_category);
-	if(doc.meeting_category=="Cell Meeting"){
-		if(!doc.meeting_subject){
-			msgprint("Please enter cell 'Meeting Subject' before save..! ");
-        	throw "Please enter Meeting Subject.!"
+frappe.ui.form.on("Cell Meeting Invitation", "validate", function(frm,doc) {
+	if(frm.doc.meeting_category=="Cell Meeting"){
+		if(!frm.doc.meeting_subject){
+			msgprint("Please enter cell and 'Meeting Subject' before save..! ");
+        	throw "Please enter cell and Meeting Subject.!"
 		}
 	}
-	else if(doc.meeting_category=="Church Meeting"){
-		if(!doc.meeting_sub){
-			msgprint("Please select church 'Meeting Subject' before save..! ");
-        	throw "Please enter Meeting Subject.!"
+	else if(frm.doc.meeting_category=="Church Meeting"){
+		if(!frm.doc.meeting_sub){
+			msgprint("Please select Church and 'Meeting Subject' before save..! ");
+        	throw "Please enter Church and Meeting Subject.!"
 		}
 	}
-}
+});
 
-cur_frm.cscript.invitation_to_members = function(doc,cdt,cdn) {
-	console.log("hi")
-	get_server_fields('get_members','','',doc, cdt, cdn, 1, function(r){
-		console.log(r.message)
-	}); 
-}
+frappe.ui.form.on("Cell Meeting Invitation", "meeting_category", function(frm,doc) {
+	frappe.model.clear_table(frm.doc, "invitation_member_details");
+	refresh_field("invitation_member_details");
+});
+
