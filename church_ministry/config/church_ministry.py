@@ -25,16 +25,18 @@ def get_data():
 					"type":"doctype",
 					"name": "Cell Meeting Invitation",
 					"description": _("Cell Meeting Invitation Database")
-				},								
-				{
-					"type": "page",
-					"name": "Assign For Followup",
-					"icon": "icon-sitemap",
-					"label": _("Assign For Followup"),
-					"route": "assign-for-followup",
-					"description": _("Assign Members For FTV Followup."),
-					"doctype": "Member",
 				},
+				{
+					"type":"doctype",
+					"name": "Cell Meeting Attendance",
+					"description": _("Cell Meeting Attendance Database")
+				},
+				{
+					"type":"doctype",
+					"name": "Partnership Arm Record",
+					"description": _("Partnership Arm Record Database")
+				},								
+
 				{
 					"type":"doctype",
 					"name": "Foundation School Exam",
@@ -47,6 +49,35 @@ def get_data():
 				},
 			]
 		},
+		{
+			"label": _("page"),
+			"icon": "icon-star",
+			"items": [
+				{
+					"type": "page",
+					"name": "assign-for-followup",
+					"label": _("Assign For Followup"),
+					"icon": "icon-bar-chart",
+					"description": _("Assign For Followup")
+				},
+				{
+					"type": "page",
+					"name": "approve-ftv-to-membe",
+					"label": _("Approve FTV to Member"),
+					"icon": "icon-bar-chart",
+					"description": _("Support Analytics")
+				},
+				{
+					"type": "page",
+					"name": "convert-ftv-to-membe",
+					"label": _("Convert FTV to Member"),
+					"icon": "icon-bar-chart",
+					"description": _("Convert FTV to Member")
+				},				
+			]
+		},
+
+
 		{
 			"label": _("Setup"),
 			"icon": "icon-star",

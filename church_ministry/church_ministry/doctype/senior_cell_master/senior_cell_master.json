@@ -85,7 +85,7 @@
    "permlevel": 0, 
    "precision": "", 
    "print_hide": 0, 
-   "read_only": 0, 
+   "read_only": 1, 
    "report_hide": 0, 
    "reqd": 1, 
    "search_index": 0, 
@@ -98,6 +98,7 @@
    "options": "Church Group Master", 
    "permlevel": 0, 
    "precision": "", 
+   "read_only": 1, 
    "reqd": 1
   }, 
   {
@@ -107,6 +108,7 @@
    "options": "Zone Master", 
    "permlevel": 0, 
    "precision": "", 
+   "read_only": 1, 
    "reqd": 1
   }, 
   {
@@ -116,6 +118,7 @@
    "options": "Region Master", 
    "permlevel": 0, 
    "precision": "", 
+   "read_only": 1, 
    "reqd": 1
   }
  ], 
@@ -126,7 +129,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-17 15:27:25.958725", 
+ "modified": "2015-02-20 17:31:56.085122", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Senior Cell Master", 
@@ -135,7 +138,7 @@
  "permissions": [
   {
    "amend": 0, 
-   "apply_user_permissions": 0, 
+   "apply_user_permissions": 1, 
    "cancel": 0, 
    "create": 1, 
    "delete": 0, 
@@ -156,7 +159,7 @@
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 1, 
+   "create": 0, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 
@@ -175,7 +178,7 @@
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 1, 
+   "create": 0, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 
@@ -194,7 +197,7 @@
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 1, 
+   "create": 0, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 
@@ -213,7 +216,7 @@
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 1, 
+   "create": 0, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 
@@ -232,7 +235,7 @@
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 1, 
+   "create": 0, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 

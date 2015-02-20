@@ -68,20 +68,6 @@
    "reqd": 0
   }, 
   {
-   "fieldname": "invitation_to_members", 
-   "fieldtype": "Button", 
-   "hidden": 1, 
-   "label": "Invitation to members", 
-   "permlevel": 0, 
-   "precision": ""
-  }, 
-  {
-   "fieldname": "column_break_5", 
-   "fieldtype": "Column Break", 
-   "permlevel": 0, 
-   "precision": ""
-  }, 
-  {
    "fieldname": "from_date", 
    "fieldtype": "Datetime", 
    "label": "From Date", 
@@ -98,12 +84,49 @@
    "reqd": 1
   }, 
   {
+   "fieldname": "invitation_to_members", 
+   "fieldtype": "Button", 
+   "hidden": 1, 
+   "label": "Invitation to members", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
+   "fieldname": "column_break_5", 
+   "fieldtype": "Column Break", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
    "fieldname": "venue", 
    "fieldtype": "Data", 
    "label": "Venue", 
    "permlevel": 0, 
    "precision": "", 
    "reqd": 1
+  }, 
+  {
+   "fieldname": "address", 
+   "fieldtype": "Data", 
+   "label": "address", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
+   "fieldname": "lat", 
+   "fieldtype": "Data", 
+   "label": "Latitude", 
+   "permlevel": 0, 
+   "precision": "", 
+   "read_only": 1
+  }, 
+  {
+   "fieldname": "lon", 
+   "fieldtype": "Data", 
+   "label": "Longitude", 
+   "permlevel": 0, 
+   "precision": "", 
+   "read_only": 1
   }, 
   {
    "fieldname": "from_time", 
@@ -154,7 +177,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-17 19:26:32.515232", 
+ "modified": "2015-02-20 12:55:59.297139", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Cell Meeting Invitation", 
@@ -177,6 +200,48 @@
    "role": "Administrator", 
    "set_user_permissions": 0, 
    "submit": 0, 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Regional Pastor", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Zonal Pastor", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Group Church Pastor", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Church Pastor", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "PCF Leader", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Senior Cell Leader", 
+   "write": 1
+  }, 
+  {
+   "permlevel": 0, 
+   "read": 1, 
+   "role": "Cell Leader", 
    "write": 1
   }
  ], 
