@@ -103,7 +103,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-20 17:29:43.646987", 
+ "modified": "2015-02-21 16:42:55.557174", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Church Group Master", 
@@ -144,7 +144,7 @@
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 0, 
+   "create": 1, 
    "email": 1, 
    "export": 1, 
    "permlevel": 0, 
@@ -157,7 +157,7 @@
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 0, 
+   "create": 1, 
    "email": 1, 
    "export": 1, 
    "permlevel": 0, 

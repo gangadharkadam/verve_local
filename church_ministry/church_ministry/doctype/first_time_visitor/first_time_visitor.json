@@ -1003,6 +1003,16 @@
    "reqd": 0, 
    "search_index": 0, 
    "set_only_once": 0
+  }, 
+  {
+   "default": "not", 
+   "fieldname": "flag", 
+   "fieldtype": "Data", 
+   "hidden": 1, 
+   "label": "Flag", 
+   "permlevel": 0, 
+   "precision": "", 
+   "read_only": 1
   }
  ], 
  "hide_heading": 0, 
@@ -1012,7 +1022,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-20 18:18:29.579016", 
+ "modified": "2015-02-23 16:50:14.245046", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Time Visitor", 
@@ -1021,7 +1031,7 @@
  "permissions": [
   {
    "amend": 0, 
-   "apply_user_permissions": 0, 
+   "apply_user_permissions": 1, 
    "cancel": 0, 
    "create": 1, 
    "delete": 0, 
@@ -1039,10 +1049,18 @@
    "write": 1
   }, 
   {
+   "create": 0, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "System Manager", 
+   "write": 1
+  }, 
+  {
    "amend": 0, 
    "apply_user_permissions": 1, 
    "cancel": 0, 
-   "create": 0, 
+   "create": 1, 
    "delete": 0, 
    "email": 1, 
    "export": 1, 
@@ -1062,73 +1080,86 @@
    "create": 0, 
    "permlevel": 1, 
    "read": 1, 
-   "role": "System Manager", 
-   "write": 1
-  }, 
-  {
-   "permlevel": 1, 
-   "read": 1, 
+   "report": 1, 
    "role": "Cell Leader", 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "Regional Pastor", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "Zonal Pastor", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "Group Church Pastor", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "Church Pastor", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "PCF Leader", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "apply_user_permissions": 1, 
+   "create": 1, 
    "permlevel": 0, 
    "read": 1, 
+   "report": 1, 
    "role": "Senior Cell Leader", 
+   "set_user_permissions": 1, 
+   "write": 1
+  }, 
+  {
+   "create": 1, 
+   "permlevel": 0, 
+   "read": 1, 
+   "report": 1, 
+   "role": "Member", 
    "set_user_permissions": 1, 
    "write": 1
   }, 
   {
    "permlevel": 0, 
    "read": 1, 
-   "role": "Member", 
+   "report": 1, 
+   "role": "First Time Visitor", 
+   "set_user_permissions": 1, 
    "write": 1
-  }, 
-  {
-   "permlevel": 0, 
-   "read": 1, 
-   "role": "First Time Visitor"
   }
  ], 
  "read_only": 0, 
