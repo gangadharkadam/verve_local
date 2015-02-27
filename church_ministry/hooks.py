@@ -64,6 +64,9 @@ app_version = "0.0.1"
 # ---------------
 # Hook on document methods and events
 
+
+fixtures = ["Custom Field"]
+
 doc_events = {
 	"Region Master": {
 		"validate": "church_ministry.church_ministry.doctype.region_master.region_master.validate_duplicate"		

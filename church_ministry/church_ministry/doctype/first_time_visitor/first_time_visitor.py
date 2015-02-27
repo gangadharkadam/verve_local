@@ -49,6 +49,9 @@ class FirstTimeVisitor(Document):
 			frappe.db.sql("update `tabFirst Time Visitor` set flag='SetPerm' where name='%s'"%(self.name))
 			frappe.db.commit()
 
+	# def get_related_fields(self):
+		
+
 @frappe.whitelist()
 def make_member(source_name, target_doc=None):
 	return _make_member(source_name, target_doc)

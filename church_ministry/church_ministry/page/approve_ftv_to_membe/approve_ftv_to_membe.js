@@ -35,6 +35,7 @@ frappe.assign = Class.extend({
 	        	},
 				callback: function(r) {
 					if (r.message.ftv){
+						//console.log(r.message);
 						h1=''		            
 			            for (i=0;i<r.message.ftv[0].length;i++){
 			                        var j=i+1

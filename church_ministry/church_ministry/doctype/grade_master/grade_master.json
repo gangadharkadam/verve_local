@@ -31,7 +31,7 @@
   {
    "allow_on_submit": 0, 
    "fieldname": "from_score", 
-   "fieldtype": "Data", 
+   "fieldtype": "Int", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
@@ -50,7 +50,7 @@
   {
    "allow_on_submit": 0, 
    "fieldname": "to_score", 
-   "fieldtype": "Data", 
+   "fieldtype": "Int", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
@@ -74,7 +74,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-21 12:21:20.404586", 
+ "modified": "2015-02-27 12:47:08.860167", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Grade Master", 
