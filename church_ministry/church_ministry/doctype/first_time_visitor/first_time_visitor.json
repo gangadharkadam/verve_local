@@ -527,14 +527,14 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "description": "Foundation School  baptism details", 
+   "description": "Foundation School  Baptism Details", 
    "fieldname": "foundation_school__baptism_details", 
    "fieldtype": "Section Break", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
    "in_list_view": 0, 
-   "label": "Foundation School  baptism details", 
+   "label": "Foundation School  Baptism Details", 
    "no_copy": 0, 
    "permlevel": 0, 
    "precision": "", 
@@ -1022,7 +1022,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-23 16:50:14.245046", 
+ "modified": "2015-02-27 17:30:42.527864", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Time Visitor", 
@@ -1054,7 +1054,7 @@
    "read": 1, 
    "report": 1, 
    "role": "System Manager", 
-   "write": 1
+   "write": 0
   }, 
   {
    "amend": 0, 
@@ -1082,7 +1082,7 @@
    "read": 1, 
    "report": 1, 
    "role": "Cell Leader", 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
@@ -1160,6 +1160,47 @@
    "role": "First Time Visitor", 
    "set_user_permissions": 1, 
    "write": 1
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "Regional Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "Zonal Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "Group Church Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "Church Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "PCF Leader"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "report": 1, 
+   "role": "Senior Cell Leader"
   }
  ], 
  "read_only": 0, 

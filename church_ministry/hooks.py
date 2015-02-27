@@ -104,6 +104,9 @@ doc_events = {
 	"Foundation School Exam": {
 		"validate": "church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.validate_duplicate",
 		"on_submit": "church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.update_attendance",		
+	},
+	"Cell Meeting Invitation": {
+		"validate": "church_ministry.church_ministry.doctype.cell_meeting_invitation.cell_meeting_invitation.validate_duplicate"		
 	}
 }
 

@@ -38,7 +38,6 @@ frappe.assign = Class.extend({
     frappe.call({
       method:"church_ministry.church_ministry.page.dashboard.dashboard.get_meter",
       callback: function(r) {
-        console.log(r.message.result);
         var member=r.message.result.members[0][0];
         var ftvch=r.message.result.ftvch[0][0];
         var ftvcl=r.message.result.ftvcl[0][0];
@@ -144,15 +143,15 @@ frappe.assign = Class.extend({
 			var options = {packages: ['corechart'], callback : drawChart};
 		    google.load('visualization', '1', options);
 		    function drawChart() {
-		  	mydata=[['Month','Revenue Details']];
+		  	mydata=[['Month','Donation','Pledge']];
 		   	 for(var x in r.message.get_revenue){
   				mydata.push(r.message.get_revenue[x]);
                }
 		    var data = google.visualization.arrayToDataTable(mydata);
 		    var options = {
 		      title: 'Revenue Details',
-		      hAxis: {title: 'Month', titleTextStyle: {color: 'green'}},
-		      vAxis: {title: 'Revenue ',minValue:0,titleTextStyle: {color: 'green'}},
+		      hAxis: {title: 'Month-Year', titleTextStyle: {color: 'black'}},
+		      vAxis: {title: 'Revenue ',minValue:0,titleTextStyle: {color: 'black'}},
 		      width: 600,
         	height:400,
         	legend: { position: 'top', maxLines: 3 }
@@ -169,12 +168,13 @@ frappe.assign = Class.extend({
         callback: function(r) {
         mydata=["<h4>ToDo's</h4><table cellspacing='10'>"];
         for(i=0;i<r.message.get_todo.length;i++) {
-            str="<tr><td ><p><a href='desk#Form/ToDo/"+r.message.get_todo[i][0]+"'><font color='green'>"+r.message.get_todo[i][4]+"</font>&nbsp;&nbsp;&nbsp;</a> </td><td> "+r.message.get_todo[i][1]+"&nbsp;&nbsp;&nbsp;</td><td>"+r.message.get_todo[i][2]+"</p></tr>";
+            str="<tr><td ><p><a href='desk#Form/ToDo/"+r.message.get_todo[i][0]+"'><font color='green'>"+r.message.get_todo[i][3]+"</font>&nbsp;&nbsp;&nbsp;</a> </td><td> "+r.message.get_todo[i][1]+"&nbsp;&nbsp;&nbsp;</td><td>"+r.message.get_todo[i][2]+"</p></tr>";
             mydata.push(str);
         } 
         $('.c3').html(mydata);
       }
       });
+    
    },
    event_details:function(){
       frappe.call({
@@ -182,9 +182,10 @@ frappe.assign = Class.extend({
         callback: function(r) {
         mydata=["<h4>My Events's</h4><table cellspacing='10' style='padding: 5px; width:100%;'>"];
         for(i=0;i<r.message.get_event.length;i++) {
-            str="<tr><td ><p><a href='desk#Form/Event/"+r.message.get_event[i][0]+"'><font color='green'>"+r.message.get_event[i][1]+"</font>&nbsp;&nbsp;&nbsp;</a> </td></p></tr>";
+            str="<tr><td width='100%'><p><a href='desk#Form/Event/"+r.message.get_event[i][0]+"'><font color='green'>"+r.message.get_event[i][1]+"</font></a></td></p></tr>";
             mydata.push(str);
-        } 
+        }
+        mydata.push("<tr><td align='right'><p><a href='desk#List/Event'><font color='black'>...More</font></a></td></tr>");
         $('.c4').html(mydata);
       }
       });

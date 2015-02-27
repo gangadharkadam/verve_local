@@ -8,13 +8,13 @@ from frappe.utils import cstr,now,add_days
 @frappe.whitelist()
 def get_revenue():
 	return {
-		"get_revenue": frappe.db.sql("select name,round(lat) from `tabMember` ",as_list=1)
+		"get_revenue": frappe.db.sql("select DATE_FORMAT(creation, '%b-%Y'),sum(ifnull(case when donation=1 then amount else 0 end,0.00)) as donation_amt,sum(ifnull(case when pledge=1 then equated_amount else 0 end,0.00)) as please_amount from `tabPartnership Arm Record` where creation >= DATE_FORMAT( CURRENT_DATE - INTERVAL 1 MONTH, '%Y/%m/01' ) AND creation < DATE_FORMAT( CURRENT_DATE, '%Y/%m/%d' ) group by DATE_FORMAT(creation, '%Y%m') ",as_list=1)
 	}
 
 @frappe.whitelist()
 def get_todo():
 	return {
-		"get_todo": frappe.db.sql("select name,status,priority,date,description from `tabToDo` limit 10",as_list=1)
+		"get_todo": frappe.db.sql("select name,status,priority,description from `tabToDo` limit 10",as_list=1)
 	}
 
 

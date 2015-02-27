@@ -55,6 +55,10 @@ cur_frm.fields_dict['zone'].get_query = function(doc) {
 }
 
 frappe.ui.form.on("First Time Visitor", "onload", function(frm,doc) {
+  if(!frm.doc.__islocal){
+    set_field_permlevel('email_id',1);
+  }
+
   $( "#map-canvas" ).remove();
   $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div>');
     if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
@@ -89,6 +93,16 @@ cur_frm.cscript.create_member = function() {
     })
 }
 
+cur_frm.cscript.email_id = function(doc, dt, dn) {
+   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   check=re.test(doc.email_id)
+   if(check==false)
+   {
+        cur_frm.set_value("email_id", '')
+        msgprint("Please Enter valid Email Id..! ");
+        throw "Please Enter valid Email Id.!"
+   }
+}
 
 cur_frm.add_fetch("cell", "pcf", "pcf");
 cur_frm.add_fetch("cell", "church", "church");

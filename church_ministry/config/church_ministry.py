@@ -51,7 +51,7 @@ def get_data():
 			]
 		},
 		{
-			"label": _("page"),
+			"label": _("Page"),
 			"icon": "icon-star",
 			"items": [
 				{
