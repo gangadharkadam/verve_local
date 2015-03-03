@@ -1,13 +1,13 @@
 cur_frm.add_fetch("cell", "senior_cell", "senior_cell");
 cur_frm.add_fetch("cell", "pcf", "pcf");
 cur_frm.add_fetch("cell", "church", "church");
-cur_frm.add_fetch("cell", "church_group", "church_group");
+//cur_frm.add_fetch("cell", "church_group", "church_group");
 cur_frm.add_fetch("cell", "region", "region");
 cur_frm.add_fetch("cell", "zone", "zone");
 
 $.extend(cur_frm.cscript, {
   onload:function (doc,dt,dn){  
-       cur_frm.cscript.toggle_related_fields(doc);
+        cur_frm.cscript.toggle_related_fields(doc);
   },
   refresh: function (doc, dt, dn) {
 		cur_frm.cscript.toggle_related_fields(doc);
@@ -39,8 +39,8 @@ frappe.ui.form.on("Foundation School Exam", "cell", function(frm,cdt,cdn,doc) {
 			           	    	child.member_id=r.message.ftv[0][i][0];
 			           	    }
 			           	    child.ftv_name=r.message.ftv[0][i][1];
-			           } 
-			           refresh_field("attendance");
+			           }
+			           cur_frm.refresh_fields();
 			        }
 			 }
 	    })
@@ -49,10 +49,7 @@ frappe.ui.form.on("Foundation School Exam", "cell", function(frm,cdt,cdn,doc) {
 frappe.ui.form.on("Foundation School Exam", "visitor_type", function(frm,doc) {
 	frappe.model.clear_table(frm.doc, "attendance");
 	cur_frm.cscript.toggle_related_fields(frm.doc);
-	//frappe.model.clear_table(doc, "attendance");
-
 });
-
 
 cur_frm.cscript.toggle_related_fields = function(doc) {
 	if (doc.visitor_type=='FTV'){

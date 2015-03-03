@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import frappe
 import frappe.defaults
 from frappe.desk.reportview import get_match_cond
+from frappe.model.mapper import get_mapped_doc
 
 @frappe.whitelist()
 def loadftv():
@@ -17,4 +18,21 @@ def approveftv(ftv):
 	ftvs=eval(ftv)
 	for i in range(len(ftvs)):    
 		frappe.db.sql("""update `tabFirst Time Visitor` set approved=1,date_of_approval=CURDATE() where name='%s' """ % (ftvs[i]))
+		ftvc=convert_ftv(ftvs[i])
+		ftvc.save()
 	return "Done"
+
+
+def convert_ftv(source_name, target_doc=None):
+	target_doc = get_mapped_doc("First Time Visitor", source_name,
+		{"First Time Visitor": {
+			"doctype": "Member",
+			"field_map": {
+				"ftv_name": "member_name",
+				"name": "ftv_id_no",
+				"address_manual":"home_address",
+				"date_of_visit":"date_of_join",
+				"member_designation":"Member"
+			}
+		}}, target_doc)
+	return target_doc

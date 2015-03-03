@@ -129,7 +129,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-27 17:10:30.779452", 
+ "modified": "2015-03-02 14:57:41.544347", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Senior Cell Master", 
@@ -267,6 +267,36 @@
    "set_user_permissions": 0, 
    "submit": 0, 
    "write": 0
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "Regional Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "Zonal Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "Group Church Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "Church Pastor"
+  }, 
+  {
+   "apply_user_permissions": 1, 
+   "permlevel": 1, 
+   "read": 1, 
+   "role": "PCF Leader"
   }
  ], 
  "read_only": 0, 

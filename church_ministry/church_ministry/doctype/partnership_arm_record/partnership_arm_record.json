@@ -55,7 +55,7 @@
    "permlevel": 0, 
    "precision": "", 
    "read_only": 1, 
-   "reqd": 1
+   "reqd": 0
   }, 
   {
    "depends_on": "eval:!doc.is_member", 
@@ -74,7 +74,7 @@
    "permlevel": 0, 
    "precision": "", 
    "read_only": 1, 
-   "reqd": 1
+   "reqd": 0
   }, 
   {
    "depends_on": "eval:doc.is_member==0", 
@@ -138,6 +138,7 @@
    "reqd": 1
   }, 
   {
+   "depends_on": "eval:!doc.pledge", 
    "fieldname": "donation", 
    "fieldtype": "Check", 
    "label": "Donation", 
@@ -145,6 +146,7 @@
    "precision": ""
   }, 
   {
+   "depends_on": "eval:!doc.donation", 
    "fieldname": "pledge", 
    "fieldtype": "Check", 
    "label": "Pledge", 
@@ -203,7 +205,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-02-26 12:38:33.427174", 
+ "modified": "2015-03-03 18:44:08.517991", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Partnership Arm Record", 

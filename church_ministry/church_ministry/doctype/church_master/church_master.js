@@ -13,3 +13,31 @@ cur_frm.cscript.email_id = function(doc, dt, dn) {
         throw "Please Enter Correct Email ID.!"
    }
 }
+
+cur_frm.cscript.refresh =function(doc, dt, dn){
+    get_server_fields('set_higher_values','','',doc, dt, dn, 1, function(r){
+      refresh_field('region');
+      refresh_field('zone');
+      refresh_field('church_group');
+    });
+}
+
+frappe.ui.form.on("Church Master", "onload", function(frm) {
+	if (in_list(user_roles, "Regional Pastor")){
+   		set_field_permlevel('region',1);
+  	}
+  	else if (in_list(user_roles, "Zonal Pastor")){
+  		set_field_permlevel('zone',1)
+   		set_field_permlevel('region',2);
+  	}
+	else if (in_list(user_roles, "Group Church Pastor")){
+    	set_field_permlevel('church_group',1);
+    	set_field_permlevel('zone',2);
+    	set_field_permlevel('region',2);
+    }
+    else if (in_list(user_roles, "Church Pastor")){
+    	set_field_permlevel('church_group',2);
+    	set_field_permlevel('zone',2);
+    	set_field_permlevel('region',2);
+    }
+});

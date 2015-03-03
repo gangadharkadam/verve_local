@@ -6,6 +6,8 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe import throw, _, msgprint
+import frappe.share
+from frappe.utils import cstr,now,add_days,nowdate
 
 class CellMeetingInvitation(Document):
 	
@@ -21,16 +23,60 @@ class CellMeetingInvitation(Document):
 			child.member_name = d[1]
 			child.email_id = d[2]
 
-	# def on_update(self):
-	# 	fdate=self.from_date.split(" ")
-	# 	f_date=fdate[0]
-	# 	tdate=self.to_date.split(" ")
-	# 	t_date=tdate[0]
-	# 	res=frappe.db.sql("select name from `tabCell Meeting Invitation` where (cell='%s' or church='%s') and from_date like '%s%%' and to_date like '%s%%'"%(self.cell,self.church,f_date,t_date))
-	# 	frappe.errprint(res)
-	# 	if res:
-	# 		frappe.throw(("Cell Meeting Invitation '{0}' is already created for same details on same date '{1}'").format(res[0][0],f_date))
+	def on_submit(self):
+			#if self.flag=='False':
+			event = frappe.get_doc({
+				"doctype": "Event",
+				"owner": frappe.session.user,
+				"subject": "Cell Meeting Invitation",
+				"description": "Cell Meeting Invitation",
+				"starts_on": add_days(now(), 3),
+				"event_type": "Private",
+				"ref_type": "Cell Meeting Invitation",
+				"ref_name": self.name
+			})
+			event.insert(ignore_permissions=True)
+			for d in self.get('invitation_member_details'):
+				if frappe.db.exists("User", d.email_id):
+					frappe.share.add("Event", event.name, d.email_id, "read")
+		# fdate=self.from_date.split(" ")
+		# f_date=fdate[0]
+		# tdate=self.to_date.split(" ")
+		# t_date=tdate[0]
+		# res=frappe.db.sql("select name from `tabCell Meeting Invitation` where (cell='%s' or church='%s') and from_date like '%s%%' and to_date like '%s%%'"%(self.cell,self.church,f_date,t_date))
+		# frappe.errprint(res)
+		# if res:
+		# 	frappe.throw(("Cell Meeting Invitation '{0}' is already created for same details on same date '{1}'").format(res[0][0],f_date))
 		
+	def set_higher_values(self):
+		if self.church:
+			value = frappe.db.sql("select region,zone,church_group,pcf,senior_cell,name from `tabCell Master` where church='%s'"%(self.church),as_list=1)
+			ret={}
+			if value:
+				ret={
+					"region": value[0][0],
+					"zone": value[0][1],
+					"church_group" : value[0][2],
+					"pcf" : value[0][3],
+					"senior_cell" : value[0][4],
+					"cell_master" : value[0][5]
+				}
+			return ret
+		elif self.cell:
+			value = frappe.db.sql("select region,zone,church_group,church,pcf,senior_cell from `tabCell Master` where name='%s'"%(self.cell),as_list=1)
+			ret={}
+			if value:
+				ret={
+					"region": value[0][0],
+					"zone": value[0][1],
+					"church_group" : value[0][2],
+					"church_master" : value[0][3],
+					"pcf" : value[0][4],
+					"senior_cell" : value[0][5]
+				}
+			return ret
+
+
 def validate_duplicate(doc,method):
 	if doc.get("__islocal"):
 		fdate=doc.from_date.split(" ")

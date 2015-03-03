@@ -54,11 +54,82 @@ cur_frm.fields_dict['zone'].get_query = function(doc) {
   }
 }
 
-frappe.ui.form.on("First Time Visitor", "onload", function(frm,doc) {
+frappe.ui.form.on("First Time Visitor", "onload", function(frm,doc,cdt, cdn) {
   if(!frm.doc.__islocal){
     set_field_permlevel('email_id',1);
   }
 
+  if (in_list(user_roles, "Cell Leader")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',2);
+    set_field_permlevel('church',2);
+    set_field_permlevel('church_group',2);
+    set_field_permlevel('pcf',2);
+    set_field_permlevel('zone',2);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "Senior Cell Leader")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('church',2);
+    set_field_permlevel('church_group',2);
+    set_field_permlevel('pcf',2);
+    set_field_permlevel('zone',2);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "PCF Leader")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('pcf',1);
+    set_field_permlevel('church',2);
+    set_field_permlevel('church_group',2);
+    set_field_permlevel('zone',2);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "Church Pastor")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('pcf',1);
+    set_field_permlevel('church',1);
+    set_field_permlevel('church_group',2);
+    set_field_permlevel('zone',2);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "Group Church Pastor")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('pcf',1);
+    set_field_permlevel('church',1);
+    set_field_permlevel('church_group',1);
+    set_field_permlevel('zone',2);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "Zonal Pastor")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('pcf',1);
+    set_field_permlevel('church',1);
+    set_field_permlevel('church_group',1);
+    set_field_permlevel('zone',1);
+    set_field_permlevel('region',2);
+  }
+  else if(in_list(user_roles, "Regional Pastor")){
+    set_field_permlevel('cell',1);
+    set_field_permlevel('senior_cell',1);
+    set_field_permlevel('pcf',1);
+    set_field_permlevel('church',1);
+    set_field_permlevel('church_group',1);
+    set_field_permlevel('zone',1);
+    set_field_permlevel('region',1);
+  }
+
+  // if (frm.doc.region){
+  //   console.log("hii")
+  //   // get_server_fields('set_higher_values','','',doc, cdt, cdn, 1, function(r){
+  //     // console.log(r.message)
+  //   // });
+  // }
+  
   $( "#map-canvas" ).remove();
   $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 425px;">Google Map</div>');
     if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
@@ -85,6 +156,18 @@ frappe.ui.form.on("First Time Visitor", "refresh", function(frm,doc) {
         })      
     }
 });
+
+cur_frm.cscript.refresh =function(doc, dt, dn){
+    get_server_fields('set_higher_values','','',doc, dt, dn, 1, function(r){
+      refresh_field('region');
+      refresh_field('zone');
+      refresh_field('church_group');
+      refresh_field('church');
+      refresh_field('pcf');
+      refresh_field('senior_cell');
+      refresh_field('cell');
+    });
+}
 
 cur_frm.cscript.create_member = function() {
     frappe.model.open_mapped_doc({

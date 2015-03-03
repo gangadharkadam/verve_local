@@ -36,7 +36,7 @@ def loadftv(cell,visitor_type):
 
 def validate_duplicate(doc,method):
 	if doc.get("__islocal"):
-		res=frappe.db.sql("select name from `tabFoundation School Exam` where foundation__exam='%s' and cell='%s' and date='%s' and docstatus!=2"%(doc.foundation__exam,doc.cell,doc.date),debug=1)
+		res=frappe.db.sql("select name from `tabFoundation School Exam` where foundation__exam='%s' and cell='%s' and date='%s' and docstatus!=2"%(doc.foundation__exam,doc.cell,doc.date))
 		if res:
 			frappe.throw(_("Another Foundation School Exam '{0}' With Exam Name '{1}' , Cell Code '{2}' and date  '{3}'..!").format(res[0][0],doc.foundation__exam,doc.cell,doc.date))
 	today=nowdate()

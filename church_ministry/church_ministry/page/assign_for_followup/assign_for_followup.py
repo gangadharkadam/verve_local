@@ -6,7 +6,7 @@ import frappe
 import frappe.defaults
 from frappe.desk.reportview import get_match_cond
 import frappe.share
-from frappe.utils import cstr,now,add_days
+from frappe.utils import cstr,now,add_days,nowdate
 
 @frappe.whitelist()
 def ftv():
@@ -64,6 +64,7 @@ def assignmember(memberid,ftv):
 	msg_ftv="""Hello %s,<br>
 	The Member '%s' name: '%s' Email ID: '%s' is assigned to you for follow up <br>Regrds,<br>Varve
 	"""%(ftvdetails[0][0],memberid,member[0][0],member[0][1])
+	
 	event = frappe.get_doc({
 				"doctype": "Event",
 				"owner": frappe.session.user,
@@ -76,9 +77,24 @@ def assignmember(memberid,ftv):
 	})
 	event.insert(ignore_permissions=True)
 	if frappe.db.exists("User", ftvdetails[0][1]):
-		frappe.share("Event", event.name, ftvdetails[0][1])
+		frappe.share.add("Event", event.name, ftvdetails[0][1], "read")
 	if frappe.db.exists("User", member[0][1]):	
-		frappe.share("Event", event.name, member[0][1])
+		frappe.share.add("Event", event.name, member[0][1], write=1)
+	
+	task=frappe.get_doc({
+				"doctype": "Task",
+				"subject": "Assign For followup",
+				"expected_start_date":nowdate(),
+				"expected_start_date":add_days(nowdate(),2),
+				"status": "Open",
+				"project": "",
+				"description":msg_member
+			}).insert(ignore_permissions=True)
+	if frappe.db.exists("User", ftvdetails[0][1]):
+		frappe.share.add("Task", task.name, ftvdetails[0][1], "read")
+	if frappe.db.exists("User", member[0][1]):	
+		frappe.share.add("Task", task.name, member[0][1], write=1)
+		
 	frappe.sendmail(recipients=member[0][1], sender='gangadhar.k@indictranstech.com', content=msg_member, subject='Assign for follow up')
 	frappe.sendmail(recipients=ftvdetails[0][1], sender='gangadhar.k@indictranstech.com', content=msg_ftv, subject='Assign for follow up')
 	return "Done"

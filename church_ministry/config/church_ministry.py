@@ -48,6 +48,11 @@ def get_data():
 					"name": "Event Attendance",
 					"description": _("Event Attendance Database")
 				},
+				{
+					"type":"doctype",
+					"name": "Task",
+					"description": _("Task Database")
+				},				
 			]
 		},
 		{
@@ -68,13 +73,13 @@ def get_data():
 					"icon": "icon-bar-chart",
 					"description": _("Eligible FTV's to Member")
 				},
-				{
-					"type": "page",
-					"name": "convert-ftv-to-membe",
-					"label": _("Convert FTV to Member"),
-					"icon": "icon-bar-chart",
-					"description": _("Convert FTV to Member")
-				},
+				# {
+				# 	"type": "page",
+				# 	"name": "convert-ftv-to-membe",
+				# 	"label": _("Convert FTV to Member"),
+				# 	"icon": "icon-bar-chart",
+				# 	"description": _("Convert FTV to Member")
+				# },
 				{
 					"type": "page",
 					"name": "dashboard",
