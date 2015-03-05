@@ -59,27 +59,27 @@ def assignmember(memberid,ftv):
 	ftvdetails=frappe.db.sql("select ftv_name,email_id,task_description,due_date from `tabFirst Time Visitor` where name='%s'"%(ftv))
 
 	msg_member="""Hello %s,<br>
-	The First Time visitor '%s' name: '%s' Email ID: '%s' is assigned to you for follow up <br>Regrds,<br>Varve
+	The First Time visitor '%s' name: '%s' Email ID: '%s' is assigned to you for follow up <br>Regards,<br>Varve
 	"""%(member[0][0],ftv,ftvdetails[0][0],ftvdetails[0][1])
 	msg_ftv="""Hello %s,<br>
-	The Member '%s' name: '%s' Email ID: '%s' is assigned to you for follow up <br>Regrds,<br>Varve
+	The Member '%s' name: '%s' Email ID: '%s' is assigned to you for follow up <br>Regards,<br>Varve
 	"""%(ftvdetails[0][0],memberid,member[0][0],member[0][1])
 	
-	event = frappe.get_doc({
-				"doctype": "Event",
-				"owner": frappe.session.user,
-				"subject": "FTV Assignment",
-				"description": ftv +" is assigned to you for followup",
-				"starts_on": add_days(now(), 3),
-				"event_type": "Private",
-				"ref_type": "First Time Visitor",
-				"ref_name": ftv
-	})
-	event.insert(ignore_permissions=True)
-	if frappe.db.exists("User", ftvdetails[0][1]):
-		frappe.share.add("Event", event.name, ftvdetails[0][1], "read")
-	if frappe.db.exists("User", member[0][1]):	
-		frappe.share.add("Event", event.name, member[0][1], write=1)
+	# event = frappe.get_doc({
+	# 			"doctype": "Event",
+	# 			"owner": frappe.session.user,
+	# 			"subject": "FTV Assignment",
+	# 			"description": ftv +" is assigned to you for followup",
+	# 			"starts_on": add_days(now(), 3),
+	# 			"event_type": "Private",
+	# 			"ref_type": "First Time Visitor",
+	# 			"ref_name": ftv
+	# })
+	# event.insert(ignore_permissions=True)
+	# if frappe.db.exists("User", ftvdetails[0][1]):
+	# 	frappe.share.add("Event", event.name, ftvdetails[0][1], "read")
+	# if frappe.db.exists("User", member[0][1]):	
+	# 	frappe.share.add("Event", event.name, member[0][1], write=1)
 	
 	task=frappe.get_doc({
 				"doctype": "Task",

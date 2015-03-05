@@ -19,13 +19,18 @@ cur_frm.cscript.score = function(doc, cdt, cdn) {
 	return get_server_fields('get_grade', d.score, '', doc, cdt, cdn, 1);
 }
 
+frappe.ui.form.on("Foundation School Exam", "onload", function(frm,cdt,cdn,doc) {
+	cur_frm.fields_dict["attendance"].grid.set_column_disp("attendance",false );
+});
+
 frappe.ui.form.on("Foundation School Exam", "cell", function(frm,cdt,cdn,doc) {
 		var d = locals[cdt][cdn];
 		frappe.call({
 				method:"church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.loadftv",
 				args:{
 	        	"cell":frm.doc.cell,
-	        	"visitor_type":frm.doc.visitor_type
+	        	"visitor_type":frm.doc.visitor_type,
+	        	"foundation__exam" : frm.doc.foundation__exam
 	        	},
 				callback: function(r) {
 					if (r.message.ftv[0].length>0){

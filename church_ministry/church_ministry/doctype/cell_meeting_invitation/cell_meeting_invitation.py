@@ -14,9 +14,9 @@ class CellMeetingInvitation(Document):
 	def  load_table(self):
 		self.set('invitation_member_details', [])
 		if self.cell:
-			member_ftv = frappe.db.sql("select name,ftv_name,email_id from `tabFirst Time Visitor` where cell='%s' union select name,member_name,email_id from `tabMember` where cell='%s' "%(self.cell,self.cell))
+			member_ftv = frappe.db.sql("select name,ftv_name,email_id from `tabFirst Time Visitor` where cell='%s' and approved=0 union select name,member_name,email_id from `tabMember` where cell='%s' "%(self.cell,self.cell))
 		elif self.church:
-			member_ftv = frappe.db.sql("select name,ftv_name,email_id from `tabFirst Time Visitor` where church='%s' union select name,member_name,email_id from `tabMember` where church='%s'"%(self.church,self.church))
+			member_ftv = frappe.db.sql("select name,ftv_name,email_id from `tabFirst Time Visitor` where church='%s' and approved=0 union select name,member_name,email_id from `tabMember` where church='%s'"%(self.church,self.church))
 		for d in member_ftv:
 			child = self.append('invitation_member_details', {})
 			child.member = d[0]
@@ -39,17 +39,9 @@ class CellMeetingInvitation(Document):
 			for d in self.get('invitation_member_details'):
 				if frappe.db.exists("User", d.email_id):
 					frappe.share.add("Event", event.name, d.email_id, "read")
-		# fdate=self.from_date.split(" ")
-		# f_date=fdate[0]
-		# tdate=self.to_date.split(" ")
-		# t_date=tdate[0]
-		# res=frappe.db.sql("select name from `tabCell Meeting Invitation` where (cell='%s' or church='%s') and from_date like '%s%%' and to_date like '%s%%'"%(self.cell,self.church,f_date,t_date))
-		# frappe.errprint(res)
-		# if res:
-		# 	frappe.throw(("Cell Meeting Invitation '{0}' is already created for same details on same date '{1}'").format(res[0][0],f_date))
 		
 	def set_higher_values(self):
-		if self.church:
+		if self.church_master:
 			value = frappe.db.sql("select region,zone,church_group,pcf,senior_cell,name from `tabCell Master` where church='%s'"%(self.church),as_list=1)
 			ret={}
 			if value:
@@ -62,7 +54,7 @@ class CellMeetingInvitation(Document):
 					"cell_master" : value[0][5]
 				}
 			return ret
-		elif self.cell:
+		elif self.cell_master:
 			value = frappe.db.sql("select region,zone,church_group,church,pcf,senior_cell from `tabCell Master` where name='%s'"%(self.cell),as_list=1)
 			ret={}
 			if value:
@@ -81,14 +73,18 @@ def validate_duplicate(doc,method):
 	if doc.get("__islocal"):
 		fdate=doc.from_date.split(" ")
 		f_date=fdate[0]
-		frappe.errprint(f_date)
 		tdate=doc.to_date.split(" ")
 		t_date=tdate[0]
-		frappe.errprint(t_date)
 		res=frappe.db.sql("select name from `tabCell Meeting Invitation` where (cell='%s' or church='%s') and from_date like '%s%%' and to_date like '%s%%'"%(doc.cell,doc.church,f_date,t_date))
-		frappe.errprint(res)
 		if res:
 			frappe.throw(_("Cell Meeting Invitation '{0}' is already created for same details on same date '{1}'").format(res[0][0],f_date))
+
+		if doc.from_date and doc.to_date:
+			if doc.from_date >= doc.to_date:
+				frappe.throw(_("To Date should be greater than From Date..!"))
+
+		if len(doc.invitation_member_details)<1:
+			frappe.throw(_("Invitation Member table is empty.There should be at least 1 member in invitation list. Please load members in table."))
 
 @frappe.whitelist()
 def create_attendance(source_name, target_doc=None):

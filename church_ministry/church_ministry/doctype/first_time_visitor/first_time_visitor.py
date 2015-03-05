@@ -18,6 +18,7 @@ class FirstTimeVisitor(Document):
 			if not self.when or self.where :
 				frappe.throw(_("When and Where is Mandatory if 'Baptisum Status' is 'Yes'..!"))
 
+
 	# def on_update(self):
 	# 	# frappe.errprint(frappe.user.name)
 	# 	usr_id=frappe.db.sql("select name from `tabUser` where name='%s'"%(self.email_id),as_list=1)
@@ -142,6 +143,13 @@ class FirstTimeVisitor(Document):
 					"senior_cell" : value[0][5]
 				}
 			return ret
+
+def validate_duplicate(doc,method):
+	if doc.get("__islocal"):
+		res=frappe.db.sql("select name from `tabFirst Time Visitor` where email_id='%s'"%(doc.email_id))
+		if res:
+			frappe.throw(_("FTV '{0}' is created With email id '{1}'..!").format(res[0][0],doc.email_id))
+
 
 
 @frappe.whitelist()

@@ -10,7 +10,7 @@ from frappe.model.mapper import get_mapped_doc
 @frappe.whitelist()
 def loadftv():
 	return {
-		"ftv": [frappe.db.sql("select name,ftv_name,sex,date_of_birth from `tabFirst Time Visitor` where (approved=0 or  approved is null) and name in (select member from (select count(member) as count,member from `tabInvitation Member Details` where  member like 'FTV%' and present=1 group by member) a where a.count>0)")]
+		"ftv": [frappe.db.sql("select name,ftv_name,sex,date_of_birth from `tabFirst Time Visitor` where (approved=0 or  approved is null) and name in (select member from (select count(member) as count,member from `tabInvitation Member Details` where  member like 'FTV%' and present=1 group by member) a where a.count>=3)")]
 	}
 
 @frappe.whitelist()

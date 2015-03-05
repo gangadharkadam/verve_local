@@ -57,6 +57,12 @@
    "set_only_once": 0
   }, 
   {
+   "fieldname": "column_break_3", 
+   "fieldtype": "Column Break", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
    "fieldname": "pcf", 
    "fieldtype": "Link", 
    "label": "PCF", 
@@ -64,12 +70,6 @@
    "permlevel": 0, 
    "precision": "", 
    "reqd": 1
-  }, 
-  {
-   "fieldname": "column_break_3", 
-   "fieldtype": "Column Break", 
-   "permlevel": 0, 
-   "precision": ""
   }, 
   {
    "allow_on_submit": 0, 
@@ -129,7 +129,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-02 14:57:41.544347", 
+ "modified": "2015-03-04 11:28:30.785162", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Senior Cell Master", 

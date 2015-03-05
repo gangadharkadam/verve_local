@@ -82,8 +82,3 @@ var assign = function(ftv){
 	        }                     
         })  
  }
-
-  
-
-
-

@@ -37,6 +37,7 @@
    "set_only_once": 0
   }, 
   {
+   "depends_on": "eval:doc.approved==1", 
    "fieldname": "approved", 
    "fieldtype": "Check", 
    "label": "Approved", 
@@ -1022,7 +1023,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-02 12:34:27.297821", 
+ "modified": "2015-03-05 13:01:15.704479", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Time Visitor", 

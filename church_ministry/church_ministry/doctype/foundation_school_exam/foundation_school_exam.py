@@ -19,20 +19,37 @@ class FoundationSchoolExam(Document):
 				"grade": grade[0][0]
 			}
 
+	def on_submit(self):
+		if self.is_member==1:
+			email=frappe.db.sql("select email_id,member_name from `tabMember` where name='%s'"%(self.member))
+		else:
+			email=frappe.db.sql("select email_id,ftv_name from `tabFirst Time Visitor` where name='%s'"%(self.ftv))
+		msg=="""Hello %s,<br> Thank you so much for your donation of amount '%s'. <br>Regards,<br>Varve"""%(email[0][1],self.amount)
+		frappe.sendmail(recipients=email[0][0], sender='gangadhar.k@indictranstech.com', content=msg, subject='Partnership Arm Record')
 
 @frappe.whitelist()
-def loadftv(cell,visitor_type):
+def loadftv(cell,visitor_type,foundation__exam):
+	if foundation__exam=='Class 1':
+		school_status='Nil'
+	elif foundation__exam=='Class 2':
+		school_status='Completed Class 1'
+	elif foundation__exam=='Class 3':
+		school_status='Completed Class 1&2'
+	elif foundation__exam=='Class 4':
+		school_status='Completed Class 1, 2 & 3'
+	elif foundation__exam=='Class 5':
+		school_status='Completed Class 1, 2 , 3 & 4'
+	elif foundation__exam=='Class 6':
+		school_status='Completed Class 1, 2 , 3 , 4 & 5'
+
 	if visitor_type=='FTV':
 		return {
-		"ftv": [frappe.db.sql("select name,ftv_name from `tabFirst Time Visitor` where cell='%s'"%(cell))]
+		"ftv": [frappe.db.sql("select name,ftv_name from `tabFirst Time Visitor` where cell='%s' and school_status='%s' and approved=0"%(cell,school_status))]
 		}
 	else:
 		return {
-		"ftv": [frappe.db.sql("select name,member_name from `tabMember` where cell='%s'"%(cell))]
+		"ftv": [frappe.db.sql("select name,member_name from `tabMember` where cell='%s' and school_status='%s'"%(cell,school_status))]
 		}
-
-
-
 
 def validate_duplicate(doc,method):
 	if doc.get("__islocal"):
@@ -42,8 +59,6 @@ def validate_duplicate(doc,method):
 	today=nowdate()
 	if getdate(doc.date) >= getdate(today):		
 		frappe.throw(_("Exam Date Should not be Future date"))
-
-
 
 def update_attendance(doc,method):
 	for d in doc.get('attendance'):

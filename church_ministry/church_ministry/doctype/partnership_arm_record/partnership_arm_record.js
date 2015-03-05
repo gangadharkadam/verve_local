@@ -47,6 +47,14 @@ frappe.ui.form.on("Partnership Arm Record", "ftv", function(frm,doc) {
 	}
 });
 
+cur_frm.fields_dict['ftv'].get_query = function(doc) {
+  return {
+    filters: {
+      "approved": 0
+    }
+  }
+}
+
 frappe.ui.form.on("Partnership Arm Record", "type_of_pledge", function(frm,doc) {
 	frm.doc.equated_amount='0.0';
 		if (frm.doc.type_of_pledge=='Monthly'){
