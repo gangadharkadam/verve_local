@@ -19,14 +19,6 @@ class FoundationSchoolExam(Document):
 				"grade": grade[0][0]
 			}
 
-	def on_submit(self):
-		if self.is_member==1:
-			email=frappe.db.sql("select email_id,member_name from `tabMember` where name='%s'"%(self.member))
-		else:
-			email=frappe.db.sql("select email_id,ftv_name from `tabFirst Time Visitor` where name='%s'"%(self.ftv))
-		msg=="""Hello %s,<br> Thank you so much for your donation of amount '%s'. <br>Regards,<br>Varve"""%(email[0][1],self.amount)
-		frappe.sendmail(recipients=email[0][0], sender='gangadhar.k@indictranstech.com', content=msg, subject='Partnership Arm Record')
-
 @frappe.whitelist()
 def loadftv(cell,visitor_type,foundation__exam):
 	if foundation__exam=='Class 1':
@@ -66,15 +58,20 @@ def update_attendance(doc,method):
 		if d.grade!='D':
 			greeting='Congratuations..!'
 		else:
-			greeting='Sorry..! You are Fail,'
+			greeting='Sorry..! You Failed.'
 		if doc.visitor_type=='FTV':
-			ftvdetails=frappe.db.sql("select ftv_name,email_id from `tabFirst Time Visitor` where name='%s'"%(d.ftv_id))
+			ftvdetails=frappe.db.sql("select ftv_name,email_id,phone_1 from `tabFirst Time Visitor` where name='%s'"%(d.ftv_id))
 		else:
-			ftvdetails=frappe.db.sql("select member_name,email_id from `tabMember` where name='%s'"%(d.member_id))
+			ftvdetails=frappe.db.sql("select member_name,email_id,phone_1 from `tabMember` where name='%s'"%(d.member_id))
 		msg_member="""Hello %s,<br><br>
 		%s You have grade '%s' in exam '%s' <br><br>Regrds,<br>Varve
 		"""%(ftvdetails[0][0],greeting,d.grade,doc.foundation__exam)
 		frappe.sendmail(recipients=ftvdetails[0][1], sender='gangadhar.k@indictranstech.com', content=msg_member, subject='Varve Exam Result')
+		from erpnext.setup.doctype.sms_settings.sms_settings import send_sms
+		receiver_list=[]
+		baptism=''
+		if d.when and d.where:
+			baptism=", baptisum_status='Yes' "
 		if d.grade!='D':
 			exm=''
 			if doc.foundation__exam=='Class 1':
@@ -90,9 +87,13 @@ def update_attendance(doc,method):
 			elif doc.foundation__exam=='Class 6':
 				exm='Completed All Classes and Passed Exam'
 			if doc.visitor_type=='FTV':
-				frappe.db.sql("""update `tabFirst Time Visitor` set school_status='%s' where name='%s' """ % (exm,d.ftv_id))
+				frappe.db.sql("""update `tabFirst Time Visitor` set school_status='%s' %s where name='%s' """ % (exm,baptism,d.ftv_id))
 			else:
-				frappe.db.sql("""update `tabMember` set school_status='%s' where name='%s' """ % (exm,d.member_id))
+				frappe.db.sql("""update `tabMember` set school_status='%s' %s where name='%s' """ % (exm, baptism, d.member_id))
+		
+		if ftvdetails[0][2]:
+			receiver_list.append(ftvdetails[0][2])			
+			send_sms(receiver_list, cstr(msg_member))
 	return "Done"
 			
 

@@ -40,8 +40,8 @@ frappe.ui.form.on("Cell Master", "onload", function(frm) {
   }
 });
 
-cur_frm.cscript.refresh =function(doc, dt, dn){
-    get_server_fields('set_higher_values','','',doc, dt, dn, 1, function(r){
+frappe.ui.form.on("Cell Master", "refresh", function(frm,dt,dn) {
+    get_server_fields('set_higher_values','','',frm.doc, dt, dn, 1, function(r){
       refresh_field('region');
       refresh_field('zone');
       refresh_field('church_group');
@@ -49,7 +49,7 @@ cur_frm.cscript.refresh =function(doc, dt, dn){
       refresh_field('pcf');
       refresh_field('senior_cell');
     });
-}
+});
 
 cur_frm.add_fetch("senior_cell", "pcf", "pcf");
 cur_frm.add_fetch("senior_cell", "church", "church");

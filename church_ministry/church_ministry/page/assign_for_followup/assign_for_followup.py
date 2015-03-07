@@ -7,6 +7,7 @@ import frappe.defaults
 from frappe.desk.reportview import get_match_cond
 import frappe.share
 from frappe.utils import cstr,now,add_days,nowdate
+from erpnext.setup.doctype.sms_settings.sms_settings import send_sms
 
 @frappe.whitelist()
 def ftv():
@@ -16,7 +17,7 @@ def ftv():
 
 @frappe.whitelist()
 def loadftv(doctype, txt, searchfield, start, page_len, filters):
-		return frappe.db.sql("""select name, ftv_name from `tabFirst Time Visitor` where ftv_owner is null or ftv_owner=''
+		return frappe.db.sql("""select name, ftv_name from `tabFirst Time Visitor` where  ftv_owner is null or ftv_owner=''
 			and ({key} like %(txt)s
 				or ftv_name like %(txt)s)
 			{mcond}
@@ -55,7 +56,7 @@ def assignmember(memberid,ftv):
 	#return "Done"
 	frappe.db.sql("""update `tabFirst Time Visitor` set ftv_owner='%s' where name='%s' """ % (memberid,ftv))
 	recipients='gangadhar.k@indictranstech.com'
-	member=frappe.db.sql("select member_name,email_id from `tabMember` where name='%s'"%(memberid))
+	member=frappe.db.sql("select member_name,email_id,phone_1 from `tabMember` where name='%s'"%(memberid))
 	ftvdetails=frappe.db.sql("select ftv_name,email_id,task_description,due_date from `tabFirst Time Visitor` where name='%s'"%(ftv))
 
 	msg_member="""Hello %s,<br>
@@ -80,7 +81,7 @@ def assignmember(memberid,ftv):
 	# 	frappe.share.add("Event", event.name, ftvdetails[0][1], "read")
 	# if frappe.db.exists("User", member[0][1]):	
 	# 	frappe.share.add("Event", event.name, member[0][1], write=1)
-	
+	desc="""Member '%s' is assigned to First time visitor '%s' for followup."""%(memberid,ftv)
 	task=frappe.get_doc({
 				"doctype": "Task",
 				"subject": "Assign For followup",
@@ -88,13 +89,17 @@ def assignmember(memberid,ftv):
 				"expected_start_date":add_days(nowdate(),2),
 				"status": "Open",
 				"project": "",
-				"description":msg_member
+				"description":desc
 			}).insert(ignore_permissions=True)
 	if frappe.db.exists("User", ftvdetails[0][1]):
-		frappe.share.add("Task", task.name, ftvdetails[0][1], "read")
+		frappe.share.add("Task", task.name, ftvdetails[0][1], write=0)
 	if frappe.db.exists("User", member[0][1]):	
 		frappe.share.add("Task", task.name, member[0][1], write=1)
-		
+	receiver_list=[]
+	receiver_list.append('9960066444')
+	receiver_list.append(member[0][2])
+	frappe.errprint(receiver_list)
+	send_sms(receiver_list, cstr(msg_member))	
 	frappe.sendmail(recipients=member[0][1], sender='gangadhar.k@indictranstech.com', content=msg_member, subject='Assign for follow up')
 	frappe.sendmail(recipients=ftvdetails[0][1], sender='gangadhar.k@indictranstech.com', content=msg_ftv, subject='Assign for follow up')
 	return "Done"

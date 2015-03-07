@@ -19,7 +19,8 @@ cur_frm.add_fetch("church", "region", "region");
 cur_frm.add_fetch("church", "zone", "zone");
 // cur_frm.add_fetch("church", "senior_cell", "senior_cell");
 
-cur_frm.cscript.refresh =function(doc, dt, dn){
+// cur_frm.cscript.refresh =function(doc, dt, dn){
+frappe.ui.form.on("Cell Meeting Invitation", "refresh", function(frm,dt,dn) {
     get_server_fields('set_higher_values','','',doc, dt, dn, 1, function(r){
       refresh_field('region');
       refresh_field('zone');
@@ -29,7 +30,7 @@ cur_frm.cscript.refresh =function(doc, dt, dn){
       refresh_field('senior_cell');
       refresh_field('cell_master');
     });
-}
+});
 
 frappe.ui.form.on("Cell Meeting Invitation", "onload", function(frm) {
   if (frm.doc.meeting_category=="Cell Meeting"){

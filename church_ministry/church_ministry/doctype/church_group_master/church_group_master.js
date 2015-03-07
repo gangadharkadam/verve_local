@@ -15,9 +15,8 @@ frappe.ui.form.on("Church Group Master", "onload", function(frm) {
   	}
 });
 
-cur_frm.cscript.refresh =function(doc, dt, dn){
-    get_server_fields('set_higher_values','','',doc, dt, dn, 1, function(r){
+frappe.ui.form.on("Church Group Master", "refresh", function(frm,dt,dn) {
+    get_server_fields('set_higher_values','','',frm.doc, dt, dn, 1);
       refresh_field('region');
       refresh_field('zone');
-    });
-}
+});

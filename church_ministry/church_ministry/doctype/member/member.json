@@ -57,7 +57,7 @@
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
    "in_list_view": 0, 
-   "label": "FTV ID No", 
+   "label": "FT ID No", 
    "no_copy": 0, 
    "permlevel": 0, 
    "precision": "", 
@@ -347,7 +347,7 @@
   {
    "fieldname": "church_group", 
    "fieldtype": "Link", 
-   "label": "Church Group", 
+   "label": "Group Church", 
    "options": "Church Group Master", 
    "permlevel": 0, 
    "precision": "", 
@@ -383,14 +383,14 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "description": "Personal Information", 
+   "description": "", 
    "fieldname": "personal_information", 
    "fieldtype": "Section Break", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
    "in_list_view": 0, 
-   "label": "Personal Information", 
+   "label": "Contact Details", 
    "no_copy": 0, 
    "permlevel": 0, 
    "precision": "", 
@@ -480,6 +480,13 @@
    "reqd": 1, 
    "search_index": 0, 
    "set_only_once": 0
+  }, 
+  {
+   "fieldname": "email_id2", 
+   "fieldtype": "Data", 
+   "label": "Email ID 2", 
+   "permlevel": 0, 
+   "precision": ""
   }, 
   {
    "allow_on_submit": 0, 
@@ -598,7 +605,7 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "description": "Foundation School  Baptism Details", 
+   "description": "", 
    "fieldname": "foundation_school__baptism_details", 
    "fieldtype": "Section Break", 
    "hidden": 0, 
@@ -910,7 +917,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-02 14:56:34.278924", 
+ "modified": "2015-03-07 18:03:32.323061", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Member", 
