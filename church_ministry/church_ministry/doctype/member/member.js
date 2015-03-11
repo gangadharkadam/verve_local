@@ -121,12 +121,12 @@ cur_frm.add_fetch("zone", "region", "region");
 
 frappe.ui.form.on("Member", "email_id", function(frm,doc,dt,dn) {
    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   check=re.test(doc.email_id)
+   check=re.test(frm.doc.email_id)
    if(check==false)
    {
         cur_frm.set_value("email_id", '')
         msgprint("Please Enter valid Email Id..! ");
-        //throw "Please Enter Correct Email ID!"
+        throw "Please Enter Correct Email ID!"
    }
 });
 

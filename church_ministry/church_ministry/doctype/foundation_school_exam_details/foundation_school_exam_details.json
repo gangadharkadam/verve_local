@@ -145,7 +145,7 @@
   {
    "allow_on_submit": 0, 
    "description": "Baptism Details", 
-   "fieldname": "when", 
+   "fieldname": "baptism_when", 
    "fieldtype": "Date", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -165,7 +165,7 @@
   {
    "allow_on_submit": 0, 
    "description": "Baptism Details", 
-   "fieldname": "where", 
+   "fieldname": "baptism_where", 
    "fieldtype": "Data", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -190,7 +190,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 1, 
- "modified": "2015-02-09 15:31:55.193648", 
+ "modified": "2015-03-09 19:00:40.948595", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Foundation School Exam Details", 

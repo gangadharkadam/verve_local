@@ -12,7 +12,7 @@
  "fields": [
   {
    "allow_on_submit": 0, 
-   "description": "Membership Information", 
+   "description": "", 
    "fieldname": "membership_information", 
    "fieldtype": "Section Break", 
    "hidden": 0, 
@@ -684,7 +684,7 @@
   {
    "allow_on_submit": 0, 
    "depends_on": "eval:doc.baptisum_status== 'Yes'", 
-   "fieldname": "when", 
+   "fieldname": "baptism_when", 
    "fieldtype": "Date", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -704,7 +704,7 @@
   {
    "allow_on_submit": 0, 
    "depends_on": "eval:doc.baptisum_status== 'Yes'", 
-   "fieldname": "where", 
+   "fieldname": "baptism_where", 
    "fieldtype": "Data", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -742,7 +742,7 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "description": "Employment Details", 
+   "description": "", 
    "fieldname": "employment_details", 
    "fieldtype": "Section Break", 
    "hidden": 0, 
@@ -917,7 +917,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-07 18:03:32.323061", 
+ "modified": "2015-03-10 10:52:11.513226", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Member", 

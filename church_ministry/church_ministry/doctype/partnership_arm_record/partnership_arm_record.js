@@ -33,11 +33,28 @@ frappe.ui.form.on("Partnership Arm Record", "validate", function(frm,doc) {
 	}
 });
 
+
+frappe.ui.form.on("Partnership Arm Record", "onload", function(frm,doc) {
+		frm.doc.ministry_year=frappe.defaults.get_user_default("fiscal_year");
+		refresh_field('ministry_year');	
+});
+
 frappe.ui.form.on("Partnership Arm Record", "member", function(frm,doc) {
 	if(!frm.doc.member){
 		frm.doc.member_name=" ";
 		refresh_field("member_name");
 	}
+});
+
+frappe.ui.form.on("Partnership Arm Record", "amount", function(frm,doc) {
+	if (frm.doc.type_of_pledge=='Monthly'){
+			frm.doc.equated_amount=(frm.doc.amount/12).toFixed(2);
+	}
+});
+
+frappe.ui.form.on("Partnership Arm Record", "date", function(frm,doc) {
+		frm.doc.ministry_year=frappe.defaults.get_user_default("fiscal_year");
+		refresh_field('ministry_year');
 });
 
 frappe.ui.form.on("Partnership Arm Record", "ftv", function(frm,doc) {
@@ -58,16 +75,16 @@ cur_frm.fields_dict['ftv'].get_query = function(doc) {
 frappe.ui.form.on("Partnership Arm Record", "type_of_pledge", function(frm,doc) {
 	frm.doc.equated_amount='0.0';
 		if (frm.doc.type_of_pledge=='Monthly'){
-			frm.doc.equated_amount=frm.doc.amount/12;
+			frm.doc.equated_amount=(frm.doc.amount/12).toFixed(2);
 		}
 		else if (frm.doc.type_of_pledge=='Quarterly'){
-			frm.doc.equated_amount=frm.doc.amount/4;		
+			frm.doc.equated_amount=(frm.doc.amount/4).toFixed(2);		
 		}
 		else if (frm.doc.type_of_pledge=='Half Yearly'){
-			frm.doc.equated_amount=frm.doc.amount/2;
+			frm.doc.equated_amount=(frm.doc.amount/2).toFixed(2);
 		}
 		else if (frm.doc.type_of_pledge=='Yearly'){
-			frm.doc.equated_amount=frm.doc.amount;
+			frm.doc.equated_amount=(frm.doc.amount).toFixed(2);
 		}
 	refresh_field("equated_amount");
 });

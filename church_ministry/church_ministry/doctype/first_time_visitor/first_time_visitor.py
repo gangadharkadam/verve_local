@@ -15,7 +15,7 @@ class FirstTimeVisitor(Document):
 		if self.date_of_birth and self.date_of_visit and getdate(self.date_of_birth) >= getdate(self.date_of_visit):		
 			frappe.throw(_("Date of Visit '{0}' must be greater than Date of Birth '{1}'").format(self.date_of_visit, self.date_of_birth))
 		if self.baptisum_status=='Yes':
-			if not self.when or self.where :
+			if not self.baptism_when or self.baptism_where :
 				frappe.throw(_("When and Where is Mandatory if 'Baptisum Status' is 'Yes'..!"))
 
 

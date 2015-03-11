@@ -15,13 +15,12 @@ def get_data():
 					"type":"doctype",
 					"name": "Member",
 					"description": _("Member Database")
-				},				
-				
-				{
-					"type":"doctype",
-					"name": "Cell Meeting Invitation",
-					"description": _("Cell Meeting Invitation Database")
-				},
+				},					
+				# {
+				# 	"type":"doctype",
+				# 	"name": "Cell Meeting Invitation",
+				# 	"description": _("Cell Meeting Invitation Database")
+				# },
 				{
 					"type":"doctype",
 					"name": "Cell Meeting Attendance",
@@ -45,11 +44,6 @@ def get_data():
 				},
 				{
 					"type":"doctype",
-					"name": "Event Attendance",
-					"description": _("Event Attendance Database")
-				},
-				{
-					"type":"doctype",
 					"name": "Task",
 					"description": _("Task Database")
 				},				
@@ -69,9 +63,9 @@ def get_data():
 				{
 					"type": "page",
 					"name": "approve-ftv-to-membe",
-					"label": _("Eligible FTV's to Member"),
+					"label": _("Eligible FT List  for Membership"),
 					"icon": "icon-bar-chart",
-					"description": _("Eligible FTV's to Member")
+					"description": _("Eligible FT List  for Membership")
 				},
 				# {
 				# 	"type": "page",
@@ -80,6 +74,11 @@ def get_data():
 				# 	"icon": "icon-bar-chart",
 				# 	"description": _("Convert FTV to Member")
 				# },
+				{
+					"type":"doctype",
+					"name": "Event Attendance",
+					"description": _("Event Attendance Database")
+				},
 				{
 					"type": "page",
 					"name": "dashboard",
