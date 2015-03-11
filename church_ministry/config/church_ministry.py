@@ -8,6 +8,12 @@ def get_data():
 			"items": [
 				{
 					"type":"doctype",
+					"name": "Invitees and Contacts",
+					"description": _("Invitees & Contacts")
+				},
+
+				{
+					"type":"doctype",
 					"name": "First Time Visitor",
 					"description": _("First Time Visitor Database")
 				},			
@@ -59,6 +65,13 @@ def get_data():
 					"label": _("Assign For Followup"),
 					"icon": "icon-bar-chart",
 					"description": _("Assign For Followup")
+				},
+				{
+					"type": "page",
+					"name": "convert-invitees-and",
+					"label": _("Convert Invitees & Contacts to FT"),
+					"icon": "icon-bar-chart",
+					"description": _("Convert Invitees & Contacts to FT")
 				},
 				{
 					"type": "page",

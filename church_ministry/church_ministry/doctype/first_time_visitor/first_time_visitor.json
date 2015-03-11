@@ -40,7 +40,7 @@
    "depends_on": "eval:doc.approved==1", 
    "fieldname": "approved", 
    "fieldtype": "Check", 
-   "label": "Approved", 
+   "label": "Converted FT to Member", 
    "permlevel": 0, 
    "precision": "", 
    "read_only": 1
@@ -48,7 +48,7 @@
   {
    "fieldname": "date_of_approval", 
    "fieldtype": "Date", 
-   "label": "Date of Approval", 
+   "label": "Date of Conversion", 
    "permlevel": 0, 
    "precision": "", 
    "read_only": 1
@@ -1023,7 +1023,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-07 19:00:30.533614", 
+ "modified": "2015-03-11 18:18:59.232683", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Time Visitor", 
@@ -1087,33 +1087,33 @@
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "Regional Pastor", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "Zonal Pastor", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "Group Church Pastor", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
@@ -1127,42 +1127,42 @@
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "PCF Leader", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "Senior Cell Leader", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "Member", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
-   "create": 1, 
+   "create": 0, 
    "permlevel": 0, 
    "read": 1, 
    "report": 1, 
    "role": "First Time Visitor", 
    "set_user_permissions": 1, 
-   "write": 1
+   "write": 0
   }, 
   {
    "apply_user_permissions": 1, 
