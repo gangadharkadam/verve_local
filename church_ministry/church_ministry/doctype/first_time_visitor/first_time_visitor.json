@@ -37,6 +37,14 @@
    "set_only_once": 0
   }, 
   {
+   "fieldname": "title", 
+   "fieldtype": "Select", 
+   "label": "Title", 
+   "options": "\nBro\nSis\nDcn\nDcns\nPastor", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
    "depends_on": "eval:doc.approved==1", 
    "fieldname": "approved", 
    "fieldtype": "Check", 
@@ -120,6 +128,23 @@
    "reqd": 0, 
    "search_index": 0, 
    "set_only_once": 0
+  }, 
+  {
+   "fieldname": "image", 
+   "fieldtype": "Attach", 
+   "label": "Image", 
+   "options": "image", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
+   "fieldname": "image_view", 
+   "fieldtype": "Image", 
+   "in_list_view": 1, 
+   "label": "Image View", 
+   "options": "image", 
+   "permlevel": 0, 
+   "precision": ""
   }, 
   {
    "fieldname": "column_break_9", 
@@ -1023,7 +1048,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-11 18:18:59.232683", 
+ "modified": "2015-03-12 11:43:40.298159", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Time Visitor", 

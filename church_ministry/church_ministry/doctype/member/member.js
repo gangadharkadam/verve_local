@@ -118,7 +118,7 @@ cur_frm.add_fetch("church_group", "zone", "zone");
 cur_frm.add_fetch("zone", "region", "region");
 
 
-frappe.ui.form.on("Member", "email_id", function(frm,doc,dt,dn) {
+/*frappe.ui.form.on("Member", "email_id", function(frm,doc,dt,dn) {
    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    check=re.test(frm.doc.email_id)
    if(check==false)
@@ -127,7 +127,7 @@ frappe.ui.form.on("Member", "email_id", function(frm,doc,dt,dn) {
         msgprint("Please Enter valid Email Id..! ");
         throw "Please Enter Correct Email ID!"
    }
-});
+});*/
 
 cur_frm.fields_dict['cell'].get_query = function(doc) {
   if (doc.senior_cell){

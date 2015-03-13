@@ -36,7 +36,12 @@ def get_data():
 					"type":"doctype",
 					"name": "Partnership Arm Record",
 					"description": _("Partnership Record")
-				},								
+				},	
+				{
+					"type":"doctype",
+					"name": "Foundation School Class Attendance",
+					"description": _("Foundation School Class Attendance")
+				},											
 
 				{
 					"type":"doctype",

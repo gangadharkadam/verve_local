@@ -199,12 +199,12 @@
    "precision": ""
   }, 
   {
-   "default": "Monthly", 
+   "default": "", 
    "depends_on": "eval:doc.giving_or_pledge=='Pledge'", 
    "fieldname": "type_of_pledge", 
    "fieldtype": "Select", 
    "label": "Type Of Pledge", 
-   "options": "Monthly\nQuarterly\nHalf Yearly\nYearly", 
+   "options": "\nMonthly\nQuarterly\nHalf Yearly\nYearly", 
    "permlevel": 0, 
    "precision": ""
   }, 
@@ -264,7 +264,7 @@
  "is_submittable": 1, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-11 18:08:34.141300", 
+ "modified": "2015-03-13 18:57:43.069980", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Partnership Arm Record", 
