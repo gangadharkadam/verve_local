@@ -157,7 +157,7 @@ def ismember(name):
 def set_higher_values(args):
     args = json.loads(args)
     keys = ["region", "zone", "church_group", "church", "pcf", "senior_cell", "name"]
-    out = frappe.db.get_all("Cell Master", fields=keys, filters={'name':args['name']})
+    out = frappe.db.get_all("Cell Master", fields=keys, filters={'name':args[name]})
     if out:
           return out[0]
 
