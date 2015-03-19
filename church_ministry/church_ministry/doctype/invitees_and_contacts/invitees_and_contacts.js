@@ -152,7 +152,7 @@ frappe.ui.form.on("Invitees and Contacts", "create_member", function(frm,doc) {
 
 cur_frm.add_fetch("cell", "pcf", "pcf");
 cur_frm.add_fetch("cell", "church", "church");
-//cur_frm.add_fetch("cell", "church_group", "church_group");
+cur_frm.add_fetch("cell", "church_group", "church_group");
 cur_frm.add_fetch("cell", "region", "region");
 cur_frm.add_fetch("cell", "zone", "zone");
 cur_frm.add_fetch("cell", "senior_cell", "senior_cell");

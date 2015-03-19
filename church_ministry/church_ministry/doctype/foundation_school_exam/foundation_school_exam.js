@@ -36,8 +36,7 @@ frappe.ui.form.on("Foundation School Exam", "church", function(frm,cdt,cdn,doc) 
 				method:"church_ministry.church_ministry.doctype.foundation_school_exam.foundation_school_exam.loadftv",
 				args:{
 	        	"church":frm.doc.church,
-	        	"visitor_type":frm.doc.visitor_type,
-	        	"foundation__exam" : frm.doc.foundation__exam
+	        	"visitor_type":frm.doc.visitor_type
 	        	},
 				callback: function(r) {
 					if (r.message.ftv[0].length>0){
