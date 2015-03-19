@@ -32,11 +32,11 @@ def get_grade(score):
 def loadftv(church,visitor_type):
  	if visitor_type=='FTV':
 		return {
-		"ftv": [frappe.db.sql("select name,ftv_name from `tabFirst Timer` where church='%s' and school_status='Completed Class 1, 2 , 3 , 4 , 5 & 6' and approved=0"%(church),debug=1)]
+		"ftv": [frappe.db.sql("select name,ftv_name,cell from `tabFirst Timer` where church='%s' and school_status='Completed Class 1, 2 , 3 , 4 , 5 & 6' and approved=0"%(church),debug=1)]
 		}
 	else:
 		return {
-		"ftv": [frappe.db.sql("select name,member_name from `tabMember` where church='%s' and school_status='Completed Class 1, 2 , 3 , 4 , 5 & 6'"%(church),debug=1)]
+		"ftv": [frappe.db.sql("select name,member_name,cell from `tabMember` where church='%s' and school_status='Completed Class 1, 2 , 3 , 4 , 5 & 6'"%(church),debug=1)]
 		}
 
 def validate_duplicate(doc,method):

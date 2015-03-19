@@ -51,6 +51,7 @@ frappe.ui.form.on("Foundation School Exam", "church", function(frm,cdt,cdn,doc) 
 			           	    	child.member_id=r.message.ftv[0][i][0];
 			           	    }
 			           	    child.ftv_name=r.message.ftv[0][i][1];
+			           	    child.cell=r.message.ftv[0][i][2];
 			           }
 			           cur_frm.refresh_fields();
 			        }
