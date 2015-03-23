@@ -29,13 +29,13 @@ def get_data():
 				# },
 				{
 					"type":"doctype",
-					"name": "Cell Meeting Attendance",
-					"description": _("Cell Meeting Attendance Database")
+					"name": "Attendance Record",
+					"description": _("Meeting Attendance Record Database")
 				},	
 				{
 					"type":"doctype",
-					"name": "Foundation School Class Attendance",
-					"description": _("Foundation School Class Attendance")
+					"name": "Foundation School Attendance",
+					"description": _("Foundation School Attendance")
 				},											
 
 				{

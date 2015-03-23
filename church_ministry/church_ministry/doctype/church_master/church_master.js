@@ -25,8 +25,7 @@ frappe.ui.form.on("Church Master", "email_id", function(frm,dt,dn) {
    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    check=re.test(frm.doc.email_id)
    if(check==false)
-   {
-        cur_frm.set_value("email_id", '')
+   {    cur_frm.set_value("email_id", '')
         msgprint("Please Enter valid Email Id..! ");
         throw "Please Enter Correct Email ID.!"
    }
