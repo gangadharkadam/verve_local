@@ -42,9 +42,22 @@ frappe.ui.form.on("Cell Meeting Attendance", "refresh", function(frm,dt,dn) {
      });
 });
 
+frappe.ui.form.on("Cell Meeting Attendance", "meeting_category", function(frm,doc) {
+  if (frm.doc.meeting_category=="Cell Meeting"){
+    unhide_field('meeting_subject')
+    hide_field('meeting_sub')
+  }
+  else if(frm.doc.meeting_category=="Church Meeting"){
+    hide_field('meeting_subject')
+    unhide_field('meeting_sub')
+  }
+});
+
 frappe.ui.form.on("Cell Meeting Attendance", "onload", function(frm) {
+  unhide_field('meeting_subject')
+  hide_field('meeting_sub')
+
 	if (in_list(user_roles, "Cell Leader")){
-    set_field_permlevel('meeting_category',1);
     set_field_permlevel('senior_cell',2);
     set_field_permlevel('church',2);
     set_field_permlevel('church_group',2);
@@ -53,7 +66,6 @@ frappe.ui.form.on("Cell Meeting Attendance", "onload", function(frm) {
     set_field_permlevel('region',2);
   }
   else if(in_list(user_roles, "Senior Cell Leader")){
-    set_field_permlevel('meeting_category',1);
     set_field_permlevel('senior_cell',1);
     set_field_permlevel('church',2);
     set_field_permlevel('church_group',2);
@@ -62,7 +74,6 @@ frappe.ui.form.on("Cell Meeting Attendance", "onload", function(frm) {
     set_field_permlevel('region',2);
   }
   else if(in_list(user_roles, "PCF Leader")){
-    set_field_permlevel('meeting_category',1);
     set_field_permlevel('senior_cell',0);
     set_field_permlevel('pcf',1);
     set_field_permlevel('church',2);
@@ -115,7 +126,5 @@ frappe.ui.form.on("Cell Meeting Attendance", "onload", function(frm) {
     set_field_permlevel('church_group',0);
     set_field_permlevel('zone',0);
     set_field_permlevel('region',0);
-    set_field_permlevel('meeting_category',0);
-
   }
 });

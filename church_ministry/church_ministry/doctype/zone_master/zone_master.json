@@ -38,20 +38,6 @@
    "set_only_once": 0
   }, 
   {
-   "fieldname": "zonal_hq", 
-   "fieldtype": "Link", 
-   "label": "Zonal HQ", 
-   "options": "Church Master", 
-   "permlevel": 0, 
-   "precision": ""
-  }, 
-  {
-   "fieldname": "column_break_10", 
-   "fieldtype": "Column Break", 
-   "permlevel": 0, 
-   "precision": ""
-  }, 
-  {
    "allow_on_submit": 0, 
    "fieldname": "region", 
    "fieldtype": "Link", 
@@ -70,6 +56,20 @@
    "reqd": 1, 
    "search_index": 0, 
    "set_only_once": 0
+  }, 
+  {
+   "fieldname": "column_break_10", 
+   "fieldtype": "Column Break", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
+   "fieldname": "zonal_hq", 
+   "fieldtype": "Link", 
+   "label": "Zonal HQ", 
+   "options": "Church Master", 
+   "permlevel": 0, 
+   "precision": ""
   }, 
   {
    "fieldname": "contact_phone_no", 
@@ -93,7 +93,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-03-10 15:54:19.751058", 
+ "modified": "2015-03-23 12:58:32.536334", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Zone Master", 
