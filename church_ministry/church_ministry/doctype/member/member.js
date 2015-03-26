@@ -40,13 +40,22 @@ frappe.ui.form.on("Member", "onload", function(frm, dt, dn) {
   }
   
   $( "#map-canvas" ).remove();
-  $(cur_frm.get_field("lon").wrapper).append('<div id="map-canvas" style="width: 425px; height: 225px;">Google Map</div>');
+  $(cur_frm.get_field("address").wrapper).append('<div id="map-canvas" style="width: 425px; height: 225px;">Google Map</div>');
     if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
       cur_frm.cscript.create_pin_on_map(frm.doc,'9.072264','7.491302');
     }
     else{
     cur_frm.cscript.create_pin_on_map(frm.doc,frm.doc.lat,frm.doc.lon);
-    }   
+    }
+
+  // $( "#map-canvas1" ).remove();
+  // $(cur_frm.get_field("office_address").wrapper).append('<div id="map-canvas1" style="width: 425px; height: 225px;">Google Map</div>');
+  //   if(frm.doc.__islocal || (!frm.doc.lat1 || ! frm.doc.lon1)){
+  //     cur_frm.cscript.create_pin_on_map(frm.doc,'9.072264','7.491302');
+  //   }
+  //   else{
+  //   cur_frm.cscript.create_pin_on_map(frm.doc,frm.doc.lat1,frm.doc.lon1);
+  //   }   
 
   if (in_list(user_roles, "Cell Leader")){
     set_field_permlevel('cell',1);
@@ -328,9 +337,7 @@ gmap = Class.extend({
 
 
 cur_frm.cscript.create_pin_on_map=function(doc,lat,lon){
-        //console.log(['create pin doc ', doc]);
         var latLng = new google.maps.LatLng(lat, lon);
-        //console.log(["create pin latLng ",latLng]);
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 6,
             center: latLng,
@@ -442,4 +449,3 @@ cur_frm.cscript.address = function(doc, dt, dn){
         console.log(['o gmap after address trigger ',o]);
         o.codeAddress(doc.address)
 }
-

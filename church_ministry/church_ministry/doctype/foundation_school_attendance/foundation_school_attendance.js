@@ -18,7 +18,7 @@ frappe.ui.form.on("Foundation School Attendance", "church", function(frm,cdt,cdn
 	    //console.log("in church trigger");
 		var d = locals[cdt][cdn];
 		frappe.call({
-				method:"church_ministry.church_ministry.doctype.foundation_school_class_attendance.foundation_school_class_attendance.loadftv",
+				method:"church_ministry.church_ministry.doctype.foundation_school_attendance.foundation_school_attendance.loadftv",
 				args:{
 	        	"church":frm.doc.church,
 	        	"visitor_type":frm.doc.visitor_type,
@@ -27,6 +27,7 @@ frappe.ui.form.on("Foundation School Attendance", "church", function(frm,cdt,cdn
 				callback: function(r) {
 					if (r.message.ftv[0].length>0){
 			           for (i=0;i<r.message.ftv[0].length;i++){
+			           		console.log(r.message.ftv[0])
 			           	    var child = frappe.model.add_child(frm.doc,"Foundation School Exam Details","attendance");
 			           	    if (frm.doc.visitor_type=='FTV'){
 			           	    	child.ftv_id=r.message.ftv[0][i][0];
@@ -35,6 +36,7 @@ frappe.ui.form.on("Foundation School Attendance", "church", function(frm,cdt,cdn
 			           	    	child.member_id=r.message.ftv[0][i][0];
 			           	    }
 			           	    child.ftv_name=r.message.ftv[0][i][1];
+			           	    child.cell=r.message.ftv[0][i][2];
 			           }
 			           cur_frm.refresh_fields();
 			        }

@@ -27,11 +27,11 @@ def loadftv(church,visitor_type,foundation__exam):
 		school_status='Completed Class 1, 2 , 3 , 4 & 5'
 	if visitor_type=='FTV':
 		return {
-		"ftv": [frappe.db.sql("select name,ftv_name from `tabFirst Timer` where church='%s' and school_status='%s' and approved=0"%(church,school_status),debug=1)]
+		"ftv": [frappe.db.sql("select name,ftv_name,cell from `tabFirst Timer` where church='%s' and school_status='%s' and approved=0"%(church,school_status))]
 		}
 	else:
 		return {
-		"ftv": [frappe.db.sql("select name,member_name from `tabMember` where church='%s' and school_status='%s'"%(church,school_status),debug=1)]
+		"ftv": [frappe.db.sql("select name,member_name,cell from `tabMember` where church='%s' and school_status='%s'"%(church,school_status))]
 		}
 
 def validate_duplicate(doc,method):
