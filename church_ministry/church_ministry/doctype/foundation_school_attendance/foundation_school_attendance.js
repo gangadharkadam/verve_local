@@ -27,7 +27,6 @@ frappe.ui.form.on("Foundation School Attendance", "church", function(frm,cdt,cdn
 				callback: function(r) {
 					if (r.message.ftv[0].length>0){
 			           for (i=0;i<r.message.ftv[0].length;i++){
-			           		console.log(r.message.ftv[0])
 			           	    var child = frappe.model.add_child(frm.doc,"Foundation School Exam Details","attendance");
 			           	    if (frm.doc.visitor_type=='FTV'){
 			           	    	child.ftv_id=r.message.ftv[0][i][0];

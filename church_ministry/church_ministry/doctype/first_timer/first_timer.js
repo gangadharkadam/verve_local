@@ -91,7 +91,7 @@ frappe.ui.form.on("First Timer", "onload", function(frm,cdt, cdn) {
             }
  
     frappe.call({
-        method:"church_ministry.church_ministry.doctype.first_time_visitor.first_time_visitor.set_higher_values",
+        method:"church_ministry.church_ministry.doctype.first_timer.first_timer.set_higher_values",
         args:{"args":argmnt},
         callback: function(r) {
           if (r.message){
@@ -196,7 +196,7 @@ frappe.ui.form.on("First Timer", "onload", function(frm,cdt, cdn) {
 frappe.ui.form.on("First Timer", "refresh", function(frm,doc,dt,dn) {
     if(!frm.doc.__islocal && frm.doc.approved) {
         frappe.call({
-              method:"church_ministry.church_ministry.doctype.first_time_visitor.first_time_visitor.ismember",
+              method:"church_ministry.church_ministry.doctype.first_timer.first_timer.ismember",
               args:{
                       "name":frm.doc.name
               },
@@ -212,7 +212,7 @@ frappe.ui.form.on("First Timer", "refresh", function(frm,doc,dt,dn) {
 
 frappe.ui.form.on("First Timer", "create_member", function(frm,doc) {
     frappe.model.open_mapped_doc({
-      method: "church_ministry.church_ministry.doctype.first_time_visitor.first_time_visitor.make_member",
+      method: "church_ministry.church_ministry.doctype.first_timer.first_timer.make_member",
       frm: cur_frm
     })
 });
