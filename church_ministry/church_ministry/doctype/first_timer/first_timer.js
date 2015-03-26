@@ -179,16 +179,18 @@ frappe.ui.form.on("First Timer", "onload", function(frm,cdt, cdn) {
     set_field_permlevel('region',1);
   }
  
+  // home address map
   $( "#map-canvas" ).remove();
-  $(cur_frm.get_field("address").wrapper).append('<div id="map-canvas" style="width: 425px; height: 225px;">Google Map</div>');
-    if(frm.doc.__islocal || (!frm.doc.lat || ! frm.doc.lon)){
-
-      cur_frm.cscript.create_pin_on_map(frm.doc,'9.072264','7.491302');
-    }
-    else{
-
+  $(cur_frm.get_field("address").wrapper).append('<div id="map-canvas" style="width: 425px; height: 225px;"></div>');
+  
+/*  // office address map
+  $( "#map-canvas1" ).remove();
+  $(cur_frm.get_field("office_address").wrapper).append('<div id="map-canvas1" style="width: 425px; height: 225px;"></div>');
+ */  
+  // display map if form is saved and have lat and lon
+    if(!frm.doc.__islocal && (frm.doc.lat &&  frm.doc.lon)){
       cur_frm.cscript.create_pin_on_map(frm.doc,frm.doc.lat,frm.doc.lon);
-    }   
+    }  
 });
 
 frappe.ui.form.on("First Timer", "refresh", function(frm,doc,dt,dn) {
@@ -248,7 +250,6 @@ cur_frm.add_fetch("church_group", "zone", "zone");
 cur_frm.add_fetch("zone", "region", "region");
 
 cur_frm.cscript.create_pin_on_map=function(doc,lat,lon){
-         console.log("create_pin_on_map");
         var latLng = new google.maps.LatLng(lat, lon);
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 10,
@@ -281,26 +282,31 @@ cur_frm.cscript.create_pin_on_map=function(doc,lat,lon){
 }
 
 function geocodePosition(pos) {
-      console.log(["geocodePositionpos[1]--",pos]);
       geocoder.geocode({
         latLng: pos
       }, function(responses) {
         if (responses && responses.length > 0) {
           updateMarkerAddress(responses[0].formatted_address);
-          //updateMarkerPosition()
         } else {
           if(doc.__islocal) {
             alert('Cannot determine address at this location.');
           }
         }
       });
+      geocoder.geocode( { 'address': doc.address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        doc.lat=results[0].geometry.location.lat();
+        doc.lon=results[0].geometry.location.lng();
+        refresh_field('lat')
+        refresh_field('lon')
+      } 
+    });
 }
 
 function updateMarkerAddress(str) {
-  console.log(["updateMarkerAddress--",str]);
   doc=cur_frm.doc
   doc.address= str;
-  refresh_field('address')
+  refresh_field('address');
 }
 
 function updateMarkerStatus(str) {
@@ -308,7 +314,6 @@ var s=1;
 }
 
 function updateMarkerPosition(latLng) {
-  console.log(["updateMarkerPosition--",latLng]);
   doc=cur_frm.doc
   doc.lat=latLng.lat()
   doc.lon=latLng.lng()
@@ -322,14 +327,33 @@ var getMarkerUniqueId= function(lat, lng) {
 }
 
 var getLatLng = function(lat, lng) {
-    console.log(["getLatLng--",lat]);
     return new google.maps.LatLng(lat, lng);
 };
 
 cur_frm.cscript.address = function(doc, dt, dn){
+      var input = (cur_frm.get_field("address").wrapper);
+      console.log(['input',input]);
+      /*var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo('bounds', map);
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      marker.setVisible(false);
+      var place = autocomplete.getPlace();    
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+      console.log(['place name---',place.name]);
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.open(map, marker);
+      });*/
+
       geocoder.geocode( { 'address': doc.address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-          //cur_frm.cscript.create_pin_on_map(doc,results[0].geometry.location.lat(),results[0].geometry.location.lng());
           doc.address=results[0].formatted_address;
           refresh_field('address');
           var latLng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
@@ -346,15 +370,12 @@ cur_frm.cscript.address = function(doc, dt, dn){
               map: map,
               draggable: true
             });
-
           updateMarkerPosition(latLng);
-
           geocodePosition(latLng);
 
           google.maps.event.addListener(marker, 'dragend', function() {
               geocodePosition(marker.getPosition());
           });
-
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
