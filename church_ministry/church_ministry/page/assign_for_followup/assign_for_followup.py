@@ -62,7 +62,7 @@ def ftv():
 @frappe.whitelist()
 def loadftv(doctype, txt, searchfield, start, page_len, filters):
 	    	frappe.errprint(get_match_cond(doctype))
-		return frappe.db.sql("""select name,ftv_name from `tabFirst Timer`  where (ftv_owner is null or ftv_owner='')  
+		return frappe.db.sql("""select name,ftv_name from `tabFirst Timer` where (ftv_owner is null or ftv_owner='')  and name NOT IN (select ifnull(ftv_id_no,'') from tabMember)
 			and ({key} like %(txt)s
 				or ftv_name like %(txt)s)
 			{mcond}
