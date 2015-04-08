@@ -8,6 +8,7 @@ from frappe import throw, _, msgprint
 from frappe.utils import getdate, validate_email_add, cint
 
 class Member(Document):
+
 	
 	def on_update(self):
 		# pass
