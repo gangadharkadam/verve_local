@@ -9,7 +9,7 @@ from frappe.model.mapper import get_mapped_doc
 
 @frappe.whitelist()
 def loadftv():
-	query="select name,invitee_contact_name,sex,date_of_birth from `tabInvitees and Contacts` where date_of_convert is null"
+	query="select name,invitee_contact_name,sex,date_of_birth,age_group from `tabInvitees and Contacts` where date_of_convert is null"
 	return {
 		"ftv": [frappe.db.sql(query)]
 	}
@@ -17,6 +17,7 @@ def loadftv():
 @frappe.whitelist()
 def approveftv(ftv):
 	ftvs=eval(ftv)
+	frappe.errprint(ftvs)
 	for i in range(len(ftvs)):
 		ftvc=convert_ftv(ftvs[i])
 		ftvc.save()
