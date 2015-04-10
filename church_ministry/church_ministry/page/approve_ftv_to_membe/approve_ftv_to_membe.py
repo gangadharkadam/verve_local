@@ -48,6 +48,8 @@ def loadftv():
 @frappe.whitelist()
 def approveftv(ftv):
 	ftvs=eval(ftv)
+	frappe.errprint(ftv)
+	frappe.errprint(ftvs)
 	for i in range(len(ftvs)):    
 		frappe.db.sql("""update `tabFirst Timer` set approved=1,date_of_approval=CURDATE() where name='%s' """ % (ftvs[i]))
 		ftvc=convert_ftv(ftvs[i])

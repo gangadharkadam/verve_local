@@ -199,7 +199,6 @@ frappe.ui.form.on("First Timer", "onload", function(frm,cdt, cdn) {
 });
 
 frappe.ui.form.on("First Timer", "refresh", function(frm,doc,dt,dn) {
-    frm.add_custom_button(__(" Audio Meeting "), cur_frm.cscript.audiomeeting,frappe.boot.doctype_icons["Customer"], "btn-default");
     if(!frm.doc.__islocal && frm.doc.approved) {
         frappe.call({
               method:"church_ministry.church_ministry.doctype.first_timer.first_timer.ismember",
@@ -215,12 +214,6 @@ frappe.ui.form.on("First Timer", "refresh", function(frm,doc,dt,dn) {
     }
     
 });
-
-
-cur_frm.cscript.audiomeeting=function(){
-    console.log(" in meeting");
-    window.open('http://localhost:5080/openmeetings', '_blank');
-};
 
 cur_frm.cscript.create_member= function(frm,doc) {
     frappe.model.open_mapped_doc({

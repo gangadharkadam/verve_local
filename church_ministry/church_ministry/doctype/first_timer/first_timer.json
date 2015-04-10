@@ -801,7 +801,7 @@
   {
    "allow_on_submit": 0, 
    "depends_on": "", 
-   "fieldname": "when", 
+   "fieldname": "baptism_when", 
    "fieldtype": "Date", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -821,7 +821,7 @@
   {
    "allow_on_submit": 0, 
    "depends_on": "", 
-   "fieldname": "where", 
+   "fieldname": "baptism_where", 
    "fieldtype": "Data", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -1327,7 +1327,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-04-02 17:07:22.726609", 
+ "modified": "2015-04-10 11:57:40.488028", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "First Timer", 
