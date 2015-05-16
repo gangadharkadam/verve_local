@@ -566,7 +566,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-04-02 16:21:16.353037", 
+ "modified": "2015-04-16 12:17:26.762924", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Invitees and Contacts", 
@@ -628,7 +628,7 @@
    "set_user_permissions": 1, 
    "share": 1, 
    "submit": 0, 
-   "user_permission_doctypes": "[\"Cells\",\"First Time Visitor\"]", 
+   "user_permission_doctypes": "[\"Cell Master\",\"First Time Visitor\"]", 
    "write": 1
   }, 
   {

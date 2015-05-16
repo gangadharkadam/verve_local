@@ -109,16 +109,33 @@ frappe.ui.form.on("Invitees and Contacts", "onload", function(frm,cdt, cdn) {
   if(!frm.doc.__islocal){
     set_field_permlevel('email_id',1);
   }
-  else{
-    get_server_fields('set_higher_values','','',frm.doc, cdt, cdn, 1, function(r){
-      refresh_field('region');
-      refresh_field('zone');
-      refresh_field('church_group');
-      refresh_field('church');
-      refresh_field('pcf');
-      refresh_field('senior_cell');
-      refresh_field('cell');
-    });
+  else if(frm.doc.__islocal && frm.doc.cell ){   
+    argmnt={
+              "name": frm.doc.cell  
+            }
+ 
+    frappe.call({
+        method:"church_ministry.church_ministry.doctype.first_timer.first_timer.set_higher_values",
+        args:{"args":argmnt},
+        callback: function(r) {
+          if (r.message){
+            frm.doc.region=r.message.region
+            frm.doc.zone=r.message.zone
+            frm.doc.church_group=r.message.church_group
+            frm.doc.church=r.message.church
+            frm.doc.pcf=r.message.pcf
+            frm.doc.senior_cell=r.message.senior_cell
+            //frm.doc.cell=r.message.name
+            refresh_field('region');              
+            refresh_field('zone');
+            refresh_field('church_group');              
+            refresh_field('church');
+            refresh_field('pcf');              
+            refresh_field('senior_cell');
+           // refresh_field('cell');
+          }
+        }
+      });
   }
 
   if (in_list(user_roles, "Cell Leader")){

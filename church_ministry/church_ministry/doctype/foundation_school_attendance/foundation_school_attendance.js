@@ -7,6 +7,41 @@ frappe.ui.form.on("Foundation School Attendance", "onload", function(frm,cdt,cdn
     cur_frm.fields_dict["attendance"].grid.set_column_disp("attendance",false );
   	}
   	cur_frm.cscript.toggle_related_fields(frm.doc);
+
+  	if(frm.doc.__islocal && frm.doc.cell ){   
+    argmnt={
+              // "region": frm.doc.region,
+              // "zone": frm.doc.zone,
+              // "church_group": frm.doc.church_group,
+              // "church": frm.doc.church ,
+              // "pcf": frm.doc.pcf,
+              // "senior_cell": frm.doc.senior_cell,
+              "name": frm.doc.cell  
+            }
+ 
+    frappe.call({
+        method:"church_ministry.church_ministry.doctype.first_timer.first_timer.set_higher_values",
+        args:{"args":argmnt},
+        callback: function(r) {
+          if (r.message){
+            frm.doc.region=r.message.region
+            frm.doc.zone=r.message.zone
+            frm.doc.church_group=r.message.church_group
+            frm.doc.church=r.message.church
+            frm.doc.pcf=r.message.pcf
+            frm.doc.senior_cell=r.message.senior_cell
+            //frm.doc.cell=r.message.name
+            refresh_field('region');              
+            refresh_field('zone');
+            refresh_field('church_group');              
+            refresh_field('church');
+            refresh_field('pcf');              
+            refresh_field('senior_cell');
+           // refresh_field('cell');
+          }
+        }
+      });
+  }
 });
 
 frappe.ui.form.on("Foundation School Attendance", "refresh", function(frm,cdt,cdn,doc) {

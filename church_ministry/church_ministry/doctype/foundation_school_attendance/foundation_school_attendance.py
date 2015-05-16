@@ -78,6 +78,6 @@ def update_attendance(doc,method):
 				frappe.db.sql("""update `tabMember` set school_status='%s' %s where name='%s' """ % (exm, baptism, d.member_id))
 		if ftvdetails and ftvdetails[0][2]:
 			receiver_list.append(ftvdetails[0][2])
-			frappe.errprint(['sssss',receiver_list[0][2]])		
+			# frappe.errprint(['sssss',receiver_list[0][2]])		
 			send_sms(receiver_list, cstr(msg_member))
 	return "Done"

@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from frappe.model.mapper import get_mapped_doc
 
 class EventAttendance(Document):
 	def  load_table(self):
@@ -42,4 +43,27 @@ class EventAttendance(Document):
 			child = self.append('event_attendace_details', {})
 			child.id = d[0]
 			child.person_name = d[1]
+
+@frappe.whitelist()
+def create_event_attendance(source_name, target_doc=None):
+	def postprocess(source, doc):
+		pass
+
+	doc = get_mapped_doc("Event", source_name, {
+		"Event": {
+			"doctype": "Event Attendance",
+			# "validation": {
+			# 	"docstatus": ["=", 1]
+			# }
+		},
+		"Event Attendace Details": {
+			"doctype": "Event Attendace Details",
+			"field_map": {
+				# "parent": "sales_order_no",
+				# "stock_uom": "uom"
+			}
+		}
+	}, target_doc, postprocess)
+
+	return doc
 

@@ -17,7 +17,7 @@ class FoundationSchoolExam(Document):
 			return {
 				"grade": grade[0][0]
 			}
-	
+
 @frappe.whitelist()
 def get_grade(score):
 			query="select name from `tabFoundation School Grades` where to_score>='"+cstr(score)+"' and from_score<='"+cstr(score)+"'"
@@ -59,9 +59,11 @@ def update_attendance(doc,method):
 			ftvdetails=frappe.db.sql("select ftv_name,email_id,phone_1 from `tabFirst Timer` where name='%s'"%(d.ftv_id))
 		else:
 			ftvdetails=frappe.db.sql("select member_name,email_id,phone_1 from `tabMember` where name='%s'"%(d.member_id))
+		# frappe.errprint(doc.foundation__exam)
 		msg_member="""Hello %s,<br><br>
-		%s You have grade '%s' in exam '%s' <br><br>Regards,<br>Verve
-		"""%(ftvdetails[0][0],greeting,d.grade,doc.foundation__exam)
+		%s You are passed Foundation School Exam with grade '%s' <br><br>Regards,<br>Verve
+		"""%(ftvdetails[0][0],greeting,d.grade)
+
 		frappe.sendmail(recipients=ftvdetails[0][1], sender='gangadhar.k@indictranstech.com', content=msg_member, subject='Verve Exam Result')
 		from erpnext.setup.doctype.sms_settings.sms_settings import send_sms
 		receiver_list=[]
@@ -70,19 +72,7 @@ def update_attendance(doc,method):
 			baptism=", baptisum_status='Yes' , baptism_when='"+d.baptism_when+"' , baptism_where='"+cstr(d.baptism_where)+"' "
 			# frappe.errprint(baptism)
 		if d.grade!='D':
-			exm=''
-			if doc.foundation__exam=='Class 1':
-				exm='Completed Class 1'
-			elif doc.foundation__exam=='Class 2':
-				exm='Completed Class 1&2'
-			elif doc.foundation__exam=='Class 3':
-				exm='Completed Class 1, 2 & 3'
-			elif doc.foundation__exam=='Class 4':
-				exm='Completed Class 1, 2 , 3 & 4'
-			elif doc.foundation__exam=='Class 5':
-				exm='Completed Class 1, 2 , 3 , 4 & 5'
-			elif doc.foundation__exam=='Class 6':
-				exm='Completed All Classes and Passed Exam'
+			exm='Completed All Classes and Passed Exam'
 			if doc.visitor_type=='FTV':
 				frappe.db.sql("""update `tabFirst Timer` set school_status='%s' %s where name='%s' """ % (exm,baptism,d.ftv_id))
 			else:
