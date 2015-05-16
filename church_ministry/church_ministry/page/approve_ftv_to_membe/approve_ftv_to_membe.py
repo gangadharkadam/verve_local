@@ -9,12 +9,7 @@ from frappe.model.mapper import get_mapped_doc
 
 @frappe.whitelist()
 def loadftv():
-	# frappe.errprint(frappe.user.name)
-	roles=frappe.get_roles(frappe.user.name)
-	# frappe.errprint(frappe.get_roles(frappe.user.name))
-	# frappe.errprint('Cell Leader' in roles)
-	val=frappe.db.sql("select defkey,defvalue from `tabDefaultValue` where defkey in ('Cells','Senior Cells','PCFs','Churches','Group Churches','Zones','Regions') and parent='%s' limit 1"%(frappe.user.name))
-	#frappe.errprint(val)
+	val=frappe.db.sql("select defkey,defvalue from `tabDefaultValue` where defkey in ('Cells','Senior Cells','PCFs','Churches','Group Churches','Zones','Regions') and parent='%s' limit 1"%(frappe.session.user))
 	if val:
 		if val[0][0]=='Cells':
 			key='cell'

@@ -11,9 +11,8 @@ from erpnext.setup.doctype.sms_settings.sms_settings import send_sms
 
 @frappe.whitelist()
 def get_ftv_member():
-	roles=frappe.get_roles(frappe.user.name)
-	val=frappe.db.sql("select defkey,defvalue from `tabDefaultValue` where defkey in ('Cells','Senior Cells','PCFs','Churches','Group Churches','Zones','Regions') and parent='%s' limit 1"%(frappe.user.name),as_list=1)
-	# frappe.errprint(val)
+	val=frappe.db.sql("select defkey,defvalue from `tabDefaultValue` where defkey in ('Cells','Senior Cells','PCFs','Churches','Group Churches','Zones','Regions') and parent='%s' limit 1"%(frappe.session.user),as_list=1)
+	frappe.errprint(val)
 	if val:
 		if val[0][0]=='Cells':
 			key='cell'
