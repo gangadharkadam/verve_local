@@ -33,18 +33,17 @@ class AttendanceRecord(Document):
 
 def validate_duplicate(doc,method):
 	if doc.get("__islocal"):
+		if not doc.invitation_member_details:
+			doc.load_participents()
 		fdate=doc.from_date.split(" ")
 		f_date=fdate[0]
 		tdate=doc.to_date.split(" ")
 		t_date=tdate[0]
 		res=frappe.db.sql("select name from `tabAttendance Record` where (cell='%s' or church='%s') and from_date like '%s%%' and to_date like '%s%%'"%(doc.cell,doc.church,f_date,t_date))
-		frappe.errprint(res)
 		if res:
 			frappe.throw(_("Attendance Record '{0}' is already created for same details on same date '{1}'").format(res[0][0],f_date))
-
 		if doc.from_date and doc.to_date:
 			if doc.from_date >= doc.to_date:
 				frappe.throw(_("To Date should be greater than From Date..!"))
-
 		if len(doc.invitation_member_details)<1:
 			frappe.throw(_("Attendance Member table is empty.There should be at least 1 member in attendance list. Please load members in table."))
