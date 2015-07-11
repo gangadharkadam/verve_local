@@ -24,6 +24,20 @@ class FirstTimer(Document):
 			if not validate_email_add(self.email_id):
 				frappe.throw(_('{0} is not a valid email id').format(self.email_id))
 
+		self.validate_phone()
+
+	def validate_phone(self):
+            if self.get("__islocal"):
+                phone_list=frappe.db.sql("select phone_1 from `tabFirst Timer`",as_list=1)
+                for phone in phone_list:
+					if self.phone_1:
+						if self.phone_1==phone[0]:
+							frappe.throw(_("Duplicate entry for phone no..."))
+						else:
+							if self.phone_1.isdigit() and len(self.phone_1)>9 and len(self.phone_1)<11:
+								pass    
+							else:
+								frappe.throw(_("Please enter valid 10 digits phone no."))
 @frappe.whitelist()
 def make_member(source_name, target_doc=None):
 	return _make_member(source_name, target_doc)

@@ -3,7 +3,7 @@ cur_frm.add_fetch("church_group", "region", "region");
 cur_frm.add_fetch("church_group", "zone", "zone");
 cur_frm.add_fetch("zone", "region", "region");
 
-cur_frm.fields_dict['church_group'].get_query = function(doc) {
+/*cur_frm.fields_dict['church_group'].get_query = function(doc) {
   if (doc.zone){
     return "select name,church_group_code,church_group from `tabGroup Churches` where zone='"+doc.zone+"'"
   }
@@ -11,7 +11,7 @@ cur_frm.fields_dict['church_group'].get_query = function(doc) {
     return "select name,church_group_code,church_group from `tabGroup Churches`"
   }
 }
-
+*/
 cur_frm.fields_dict['zone'].get_query = function(doc) {
   if (doc.region){
     return "select name from `tabZones` where region='"+doc.region+"'"

@@ -62,7 +62,7 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "fieldname": "prsent", 
+   "fieldname": "present", 
    "fieldtype": "Check", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
@@ -101,7 +101,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 1, 
- "modified": "2015-03-11 19:28:08.432607", 
+ "modified": "2015-05-21 14:39:48.557564", 
  "modified_by": "Administrator", 
  "module": "Church Ministry", 
  "name": "Event Attendace Details", 

@@ -48,18 +48,9 @@ frappe.assign = Class.extend({
 			                        h1 += '<td style="padding=0px;width=100%">&nbsp;'+r.message.ftv[0][i][4]+'</td>'                      
 			                        h1 += "<td style='padding=0px;width=100%'>&nbsp;<input type='checkbox' data-name='"+r.message.ftv[0][i][0]+"' ></td></tr>"
 			            }
-			            $('<br><button  class="btn btn-primary btn-search" id="test">Convert</button><br>').appendTo($(me.wrapper).find('.apllybtn'));    
-			            h="<br><table class='members1' border='1' style='width:100%;background-color: #f9f9f9;'><tr><td style='padding=0px;width=100%''><b>&nbsp;Sr No.</b></td><td><b>&nbsp;Invitees and Contacts ID</b></td><td><b>&nbsp;Invitees and Contacts Name</b></td><td><b>&nbsp;Gender</b></td><td><b>&nbsp;Age Group</b></td><td><b>&nbsp;Convert</b></td></tr>"+h1+"<tbody>";	               
+			           // $('<br><button  class="btn btn-primary btn-search" id="test">Convert</button><br>').appendTo($(me.wrapper).find('.apllybtn'));    
+			            h="<br><table class='members1' border='1' style='width:100%;background-color: #f9f9f9;'><tr><td style='padding=0px;width=100%''><b>&nbsp;Sr No.</b></td><td><b>&nbsp;Invitees and Contacts ID</b></td><td><b>&nbsp;Invitees and Contacts Name</b></td><td><b>&nbsp;Gender</b></td><td><b>&nbsp;Age Group</b></td><td><b>&nbsp;Convert</b></td></tr><tbody>";	               
 			            $(h).appendTo($(me.wrapper).find('.assignt'))
-					    $('.apllybtn').find('.btn-search').click(function() {
-					    	var ftv =[];
-							$("input[type='checkbox']").each(function () {
-											if ($(this).prop("checked")==true) { 
-												ftv[ftv.length]=$(this).attr('data-name');
-											}
-							})/
-						    assign(ftv);                      
-						}) ;
 					}
 			 	}                
 	    });	

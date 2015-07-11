@@ -59,6 +59,11 @@ def get_data():
 					"name": "Task",
 					"description": _("Task Database")
 				},				
+				{
+					"type":"doctype",
+					"name": "SMS Credits Request",
+					"description": _("SMS Credits Request and Approval ")
+				},
 			]
 		},
 		{
@@ -79,12 +84,20 @@ def get_data():
 					"icon": "icon-bar-chart",
 					"description": _("Convert Invitees & Contacts to FT")
 				},
+
 				{
 					"type": "page",
 					"name": "approve-ftv-to-membe",
 					"label": _("Eligible FT List  for Membership"),
 					"icon": "icon-bar-chart",
 					"description": _("Eligible FT List  for Membership")
+				},
+				{
+					"type": "page",
+					"name": "open-office",
+					"label": _("Audio meeting"),
+					"icon": "icon-bar-chart",
+					"description": _("Audio meeting")
 				},
 				# {
 				# 	"type": "page",
@@ -100,11 +113,25 @@ def get_data():
 				},
 				{
 					"type": "page",
-					"name": "dashboard",
-					"label": _("Dashboard"),
+					"name": "convert-invitees-and",
+					"label": _("Convert Invitees & Contacts to FT"),
 					"icon": "icon-bar-chart",
-					"description": _("Dashboard")
-				},			
+					"description": _("Convert Invitees & Contacts to FT")
+				},
+				{
+					"type": "page",
+					"name": "send-sms",
+					"label": _("Send SMS"),
+					"icon": "icon-bar-chart",
+					"description": _("Send SMS")
+				},		
+				{
+					"type": "page",
+					"name": "data-import-tool",
+					"label": _("Import / Export Data"),
+					"icon": "icon-bar-chart",
+					"description": _("Import / Export Data from .csv files.")
+				},	
 			]
 		},
 

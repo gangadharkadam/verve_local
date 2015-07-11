@@ -1,0 +1,41 @@
+{
+ "content": null, 
+ "creation": "2015-06-01 18:14:49.943571", 
+ "docstatus": 0, 
+ "doctype": "Page", 
+ "modified": "2015-06-01 18:14:49.943571", 
+ "modified_by": "Administrator", 
+ "module": "Church Ministry", 
+ "name": "send-sms", 
+ "owner": "Administrator", 
+ "page_name": "Send SMS", 
+ "roles": [
+  {
+   "role": "Cell Leader"
+  }, 
+  {
+   "role": "Senior Cell Leader"
+  }, 
+  {
+   "role": "PCF Leader"
+  }, 
+  {
+   "role": "Church Pastor"
+  }, 
+  {
+   "role": "Group Church Pastor"
+  }, 
+  {
+   "role": "Zonal Pastor"
+  }, 
+  {
+   "role": "Regional Pastor"
+  }, 
+  {
+   "role": "Administrator"
+  }
+ ], 
+ "script": null, 
+ "standard": "Yes", 
+ "style": null
+}

@@ -12,13 +12,26 @@ from frappe import msgprint, _
 class InviteesandContacts(Document):
 	
 	def validate(self):
-		pass
+		self.validate_phone()
 		# if self.date_of_birth and self.date_of_visit and getdate(self.date_of_birth) >= getdate(self.date_of_visit):		
 		# 	frappe.throw(_("Date of Visit '{0}' must be greater than Date of Birth '{1}'").format(self.date_of_visit, self.date_of_birth))
 		# if self.baptisum_status=='Yes':
 		# 	if not self.baptism_when or self.baptism_where :
 		# 		frappe.throw(_("When and Where is Mandatory if 'Baptisum Status' is 'Yes'..!"))
 
+	def validate_phone(self):
+            if self.get("__islocal"):
+                phone_list=frappe.db.sql("select phone_1 from `tabInvitees and Contacts`",as_list=1)
+                for phone in phone_list:
+					if self.phone_1:
+						if self.phone_1==phone[0]:
+							frappe.throw(_("Duplicate entry for phone no..."))
+						else:
+							if self.phone_1.isdigit() and len(self.phone_1)>9 and len(self.phone_1)<11:
+								pass    
+							else:
+								frappe.throw(_("Please enter valid 10 digits phone no."))
+					
 @frappe.whitelist()
 def make_member(source_name, target_doc=None):
 	frappe.errprint("make member")
